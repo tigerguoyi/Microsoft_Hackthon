@@ -14,7 +14,7 @@ test('Replay and Decision share one renderer, palette, numbered identities and g
  const replay=fs.readFileSync(new URL('../app.js',import.meta.url),'utf8'),decision=fs.readFileSync(new URL('../decision-analysis-view.js',import.meta.url),'utf8'),lab=fs.readFileSync(new URL('../decision-counterfactual.js',import.meta.url),'utf8');
  assert.ok([replay,decision,lab].every(s=>s.includes("from './pitch-renderer.js")));
  const fills=[],numbers=[],ctx=new Proxy({fillText:(...args)=>numbers.push(args[0])},{set(o,k,v){if(k==='fillStyle')fills.push(v);o[k]=v;return true;},get(o,k){return o[k]||(()=>{});}}),canvas={clientWidth:700,clientHeight:450,width:0,height:0,getContext:()=>ctx};
- renderPitch(canvas,{players:[['H01',5,34,0,0],['A01',100,34,0,0]],ball:[6,34,0,0,0,0],ball_owner_id:'H01'},{metadata:{players:[{player_id:'H01',jersey_number:7},{player_id:'A01',jersey_number:1}]}});
+ renderPitch(canvas,{players:[['H01',5,34,0,0],['A01',100,34,0,0]],ball:[6,34,0,0,0,0],ball_owner_id:'H01'},{metadata:{players:[{player_id:'H01',team_id:'HOME',jersey_number:7},{player_id:'A01',team_id:'AWAY',jersey_number:1}]}});
  assert.ok(fills.includes('#426e57')&&fills.includes('#47745c')&&fills.includes('#ee8b5a')&&fills.includes('#83a3e0'));assert.deepEqual(numbers,[7,1]);
  assert.equal(pitchGeometry(700,450).scale,Math.min((700-42)/105,(450-69)/68));
 });

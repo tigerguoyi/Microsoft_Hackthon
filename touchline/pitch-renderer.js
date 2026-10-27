@@ -1,3 +1,4 @@
+import {resolvePlayer} from './player-identity.js';
 // Shared Replay/Decision canvas renderer. Palette and geometry inherited from 96d13a.
 export function pitchGeometry(canvasWidth, canvasHeight) {
   const w = canvasWidth, h = canvasHeight;
@@ -12,7 +13,7 @@ export function renderPitch(canvas, frame, {metadata, selected=null, route=null,
   if(canvas.width!==Math.round(canvasWidth*ratio))canvas.width=Math.round(canvasWidth*ratio);
   if(canvas.height!==Math.round(canvasHeight*ratio))canvas.height=Math.round(canvasHeight*ratio);
   const ctx=canvas.getContext('2d');ctx.setTransform(ratio,0,0,ratio,0,0);
-  const numberOf=id=>metadata?.players.find(p=>p.player_id===id)?.jersey_number??id.slice(1);
+  const numberOf=id=>resolvePlayer(metadata,id).jersey_number??'?';
   const { x, y, scale: s, w, h } = pitchGeometry(canvasWidth,canvasHeight);
   const X = v => x + v * s, Y = v => y + v * s;
   ctx.clearRect(0, 0, w, h);
@@ -36,17 +37,28 @@ export function renderPitch(canvas, frame, {metadata, selected=null, route=null,
     const a=Math.atan2(r.target[1]-r.start[1],r.target[0]-r.start[0]),tx=X(r.target[0]),ty=Y(r.target[1]);
     ctx.beginPath();ctx.moveTo(tx-8*Math.cos(a-.4),ty-8*Math.sin(a-.4));ctx.lineTo(tx,ty);ctx.lineTo(tx-8*Math.cos(a+.4),ty-8*Math.sin(a+.4));ctx.stroke();
   }
+  if(route?.recipient_id){
+    const receiver=frame.players.find(p=>p[0]===route.recipient_id);
+    const tx=X(route.target[0]),ty=Y(route.target[1]);
+    if(receiver){ctx.beginPath();ctx.strokeStyle='#f7cc78';ctx.lineWidth=1;ctx.setLineDash([2,3]);ctx.moveTo(X(receiver[1]),Y(receiver[2]));ctx.lineTo(tx,ty);ctx.stroke();ctx.setLineDash([]);}
+  }
   const radius = Math.max(6, Math.min(10, s * 1.65));
   for (const p of frame.players) {
-    const home = p[0][0] === 'H', isSelected = p[0] === selected, owner = p[0] === frame.ball_owner_id;
+    const identity=resolvePlayer(metadata,p[0]);
+    const home = identity.team_id === 'HOME', isSelected = p[0] === selected, owner = p[0] === frame.ball_owner_id;
+    const receiver = p[0] === route?.recipient_id;
     const px = X(p[1]), py = Y(p[2]);
     if (isSelected || owner) { ctx.beginPath(); ctx.arc(px, py, radius + (isSelected ? 4 : 2.5), 0, Math.PI * 2); ctx.strokeStyle = isSelected ? '#ffffffbc' : '#f9dc9c'; ctx.lineWidth = isSelected ? 1.4 : 1; ctx.stroke(); }
+    if(receiver){ctx.beginPath();ctx.arc(px,py,radius+6,0,Math.PI*2);ctx.strokeStyle='#f7cc78';ctx.lineWidth=2;ctx.stroke();}
     ctx.shadowColor = '#183b3a65'; ctx.shadowBlur = 4; ctx.shadowOffsetY = 2;
     ctx.beginPath(); ctx.arc(px, py, radius, 0, Math.PI * 2); ctx.fillStyle = home ? '#ee8b5a' : '#83a3e0'; ctx.fill();
     ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
     ctx.strokeStyle = home ? '#ffc9a391' : '#c5d7fbb0'; ctx.lineWidth = 1; ctx.stroke();
     ctx.fillStyle = home ? '#fff7ed' : '#fff'; ctx.font = `600 ${Math.max(7, radius * .9)}px -apple-system, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(numberOf(p[0]), px, py + .4);
   }
+  // Draw the receiving marker after player discs so a short lead cannot hide it.
+  if(route?.recipient_id){const tx=X(route.target[0]),ty=Y(route.target[1]);ctx.beginPath();ctx.strokeStyle='#f7cc78';ctx.lineWidth=2;
+    ctx.moveTo(tx,ty-6);ctx.lineTo(tx+6,ty);ctx.lineTo(tx,ty+6);ctx.lineTo(tx-6,ty);ctx.closePath();ctx.stroke();}
   const bx = X(frame.ball[0]), by = Y(frame.ball[1]), lift = Math.min(frame.ball[2] * s, 15);
   ctx.fillStyle = '#193d3760'; ctx.beginPath(); ctx.ellipse(bx + 1, by + 2, 3.5, 2, 0, 0, Math.PI * 2); ctx.fill();
   ctx.beginPath(); ctx.arc(bx, by - lift, 3.6, 0, Math.PI * 2); ctx.fillStyle = '#fffdf4'; ctx.fill(); ctx.strokeStyle = '#e1d9bf'; ctx.lineWidth = .8; ctx.stroke();
@@ -62,6 +74,11 @@ export function hitTestPlayer(canvas, frame, {clientX, clientY}={}) {
   const rect = canvas.getBoundingClientRect();
   const px = clientX - rect.left, py = clientY - rect.top;
   const { x, y, scale: s } = pitchGeometry(width, height);
+  if(route?.recipient_id){
+    const receiver=frame.players.find(p=>p[0]===route.recipient_id);
+    const tx=X(route.target[0]),ty=Y(route.target[1]);
+    if(receiver){ctx.beginPath();ctx.strokeStyle='#f7cc78';ctx.lineWidth=1;ctx.setLineDash([2,3]);ctx.moveTo(X(receiver[1]),Y(receiver[2]));ctx.lineTo(tx,ty);ctx.stroke();ctx.setLineDash([]);}
+  }
   const radius = Math.max(6, Math.min(10, s * 1.65));
   let nearest = null, nearestDistance = radius + 6;
   for (const player of frame.players) {

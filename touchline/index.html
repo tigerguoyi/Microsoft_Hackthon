@@ -8,7 +8,8 @@
   <title>Touchline · Football Intelligence</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%23ed713d'/%3E%3Cpath d='M9 12h22M20 12v19' stroke='white' stroke-width='5'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css?v=2.8.0">
-  <script type="module" src="app.js?v=2.8.0"></script>
+  <link rel="stylesheet" href="decision-analysis.css?v=unified-1">
+  <script type="module" src="app.js?v=unified-1"></script>
 </head>
 <body>
   <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
@@ -34,9 +35,7 @@
     <div class="workspace"><span class="workspace-icon">F</span><div>Football Ops<small>Personal workspace</small></div><span class="workspace-arrow">⌄</span></div>
     <div class="nav-caption">Workspace</div>
     <nav aria-label="Main navigation">
-      <a class="nav-item" href="coach.html">Decision Coach ↗</a>
-      <a class="nav-item" href="action-review.html">Action review ↗</a>
-      <a class="nav-item" href="decision-counterfactual.html">Counterfactual ↗</a>
+      <a class="nav-item" id="nav-decision-analysis" href="index.html?view=stats&amp;analysis=decisions">Decision Analysis</a>
       <a class="nav-item" href="realism-validation.html">Real-data validation ↗</a>
       <a class="nav-item" href="public-demo/index.html">Public demo ↗</a>
       <button class="nav-item active" data-view="home"><svg><use href="#i-grid"/></svg>Home</button>
@@ -126,23 +125,14 @@
           <section class="card events-card"><div class="card-heading"><div><h3>Match events <span id="event-count" class="count-badge">0</span></h3><p id="event-help">Click an event to jump to the moment</p></div><div class="event-controls"><select id="event-scope" aria-label="Event time range"><option value="replay">At replay time</option><option value="full">Full match</option></select><select id="event-filter" aria-label="Filter match events"><option value="key">Key events</option><option value="all">All events</option><option value="goal">Goals</option><option value="pass">Passes</option><option value="shot">Shots</option><option value="interception">Interceptions</option><option value="yellow_card">Yellow cards</option><option value="red_card">Red cards</option><option value="substitution">Substitutions</option></select></div></div><div id="event-list" class="event-list"></div></section>
           </div>
           <aside class="desk-side" id="desk-ask">
-            <div class="desk-head"><h3>Ask</h3><button type="button" class="desk-collapse" id="collapse-ask" aria-expanded="true" aria-controls="desk-ask-body" aria-label="Hide the read"><svg aria-hidden="true"><use href="#i-back"/></svg><span class="desk-collapse-label">Hide</span></button></div>
+            <div class="desk-head"><h3>Decision hint</h3><button type="button" class="desk-collapse" id="collapse-ask" aria-expanded="true" aria-controls="desk-ask-body" aria-label="Hide the read"><svg aria-hidden="true"><use href="#i-back"/></svg><span class="desk-collapse-label">Hide</span></button></div>
             <div id="desk-ask-body">
               <div class="ask-now"><span id="ask-clock">—</span><span id="ask-follow">Waiting for a match</span></div>
-              <div class="desk-switch ask-modes" role="group" aria-label="Explanation mode">
-                <button type="button" data-mode="fan" aria-pressed="true">Fan</button>
-                <button type="button" data-mode="coach" aria-pressed="false">Coach</button>
-              </div>
               <p id="ask-narration" class="ask-narration"></p>
               <div id="ask-measures" class="ask-measures"></div>
-              <p id="ask-status" role="status">Pause on a decision to ask about that moment.</p>
+              <p id="ask-status" role="status">Pause on a possession for a brief Q2 suggestion. Compare choices and ask AI in Decision Analysis.</p>
               <div id="ask-analysis"></div>
-              <form id="ask-form" hidden>
-                <label for="ask-input">Question about this decision</label>
-                <input id="ask-input" type="text" maxlength="400" placeholder="Why not pass to the open teammate?">
-                <button class="button" type="submit">Ask</button>
-              </form>
-              <p id="ask-answer"></p>
+              <a class="button" id="replay-open-decision" href="index.html?view=stats&amp;analysis=decisions">Open Decision Analysis →</a>
             </div>
           </aside>
         </div>
@@ -161,7 +151,7 @@
         </form>
         <p id="model-settings-status" role="status" aria-live="polite"></p>
       </section>
-      <section id="stats-view" hidden><section class="card player-analysis-card"><h2>Player performance</h2><p>Select a player to explore full-match statistics and running coverage.</p><div id="analysis-players"></div></section><div class="model-summary-controls"><button class="button" id="generate-model-summary">Generate model summary</button><span id="model-summary-status" role="status" aria-live="polite">Configure your model in Settings, then generate a summary for this match.</span></div><section id="match-report" class="card match-report" aria-label="Post-match analysis"><p class="empty" role="status">Loading post-match analysis…</p></section><div class="analysis-heading"><div><h2>Read the match in numbers.</h2><p>Final match statistics, independent of replay time.</p></div><span class="subtle-badge">FULL TIME</span></div><div id="full-metrics" class="metric-grid"></div><div class="analysis-grid"><section class="card"><div class="card-heading"><h3>Team comparison</h3><div class="legend"><span><i class="home-dot"></i><span id="full-legend-home">Home</span></span><span><i class="away-dot"></i><span id="full-legend-away">Away</span></span></div></div><div id="full-stats" class="full-stats"></div></section><section class="card"><div class="card-heading"><h3>Key events</h3><span class="subtle-badge">Full time</span></div><div id="all-goals" class="goal-list"></div></section></div></section>
+      <section id="stats-view" hidden><div class="analysis-subtabs" role="tablist" aria-label="Analysis sections"><button class="button active" id="report-tab" role="tab" aria-selected="true" aria-controls="match-report-panel" data-analysis-tab="report">Match Report</button><button class="button" id="decisions-tab" role="tab" aria-selected="false" aria-controls="decision-analysis" data-analysis-tab="decisions">Decision Analysis</button></div><div id="match-report-panel" role="tabpanel" aria-labelledby="report-tab"><section class="card player-analysis-card"><h2>Player performance</h2><p>Select a player to explore full-match statistics and running coverage.</p><div id="analysis-players"></div></section><div class="model-summary-controls"><button class="button" id="generate-model-summary">Generate model summary</button><span id="model-summary-status" role="status" aria-live="polite">Configure your model in Settings, then generate a summary for this match.</span></div><section id="match-report" class="card match-report" aria-label="Post-match analysis"><p class="empty" role="status">Loading post-match analysis…</p></section><div class="analysis-heading"><div><h2>Read the match in numbers.</h2><p>Final match statistics, independent of replay time.</p></div><span class="subtle-badge">FULL TIME</span></div><div id="full-metrics" class="metric-grid"></div><div class="analysis-grid"><section class="card"><div class="card-heading"><h3>Team comparison</h3><div class="legend"><span><i class="home-dot"></i><span id="full-legend-home">Home</span></span><span><i class="away-dot"></i><span id="full-legend-away">Away</span></span></div></div><div id="full-stats" class="full-stats"></div></section><section class="card"><div class="card-heading"><h3>Key events</h3><span class="subtle-badge">Full time</span></div><div id="all-goals" class="goal-list"></div></section></div></div><section id="decision-analysis" hidden role="tabpanel" aria-labelledby="decisions-tab"></section></section>
       <section id="lineup-view" hidden><div class="analysis-heading"><div><h2>Twenty-two starting coordinates.</h2><p>Starting lineups and substitutes · final appearance status · distances are simulated</p></div></div><div class="roster-grid" id="rosters"></div></section>
       <section id="squads-view" hidden>
         <div class="analysis-heading"><div><h2>Club rosters.</h2><p>Fictional club and player names; original roster attributes preserved. Select a club and explore its full roster.</p></div><span class="subtle-badge" id="squad-season">2026/27</span></div>

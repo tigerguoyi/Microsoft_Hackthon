@@ -1,0 +1,1956 @@
+{
+  "schema_version": "decision-consistency-1",
+  "matches": [
+    {
+      "match_id": "PL26-W01-BHA-MUN",
+      "final_score": [
+        0,
+        2
+      ],
+      "goals": [
+        {
+          "event_id": "e002092",
+          "available_at_ms": 3330000,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e003599",
+          "available_at_ms": 5728200,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            2
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2320,
+        "snapshots": 2320,
+        "analysis_snapshot_frames": 2320,
+        "analyzable_snapshots": 2320,
+        "predicted_receiving_points": 23080,
+        "pass_candidates": 23080,
+        "HOME_pass_candidates": 13250,
+        "outfield_receivers": 20800,
+        "keeper_receivers": 2280,
+        "period_1": 1172,
+        "AWAY_pass_candidates": 9830,
+        "period_2": 1148,
+        "substitute_receivers": 1268
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W01-BOU-NFO",
+      "final_score": [
+        1,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e001559",
+          "available_at_ms": 2432800,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        },
+        {
+          "event_id": "e001672",
+          "available_at_ms": 2639000,
+          "team_id": "AWAY",
+          "score": [
+            1,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2271,
+        "snapshots": 2271,
+        "analysis_snapshot_frames": 2271,
+        "analyzable_snapshots": 2271,
+        "predicted_receiving_points": 22545,
+        "pass_candidates": 22545,
+        "HOME_pass_candidates": 11420,
+        "outfield_receivers": 20308,
+        "keeper_receivers": 2237,
+        "period_1": 1140,
+        "AWAY_pass_candidates": 11125,
+        "period_2": 1131,
+        "substitute_receivers": 1214
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W01-COV-LIV",
+      "final_score": [
+        2,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e000706",
+          "available_at_ms": 1135600,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        },
+        {
+          "event_id": "e002622",
+          "available_at_ms": 4216800,
+          "team_id": "HOME",
+          "score": [
+            2,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2270,
+        "snapshots": 2270,
+        "analysis_snapshot_frames": 2270,
+        "analyzable_snapshots": 2270,
+        "predicted_receiving_points": 22504,
+        "pass_candidates": 22504,
+        "HOME_pass_candidates": 12440,
+        "outfield_receivers": 20262,
+        "keeper_receivers": 2242,
+        "period_1": 1130,
+        "AWAY_pass_candidates": 10064,
+        "period_2": 1140,
+        "substitute_receivers": 1146
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W01-EVE-IPS",
+      "final_score": [
+        1,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e001898",
+          "available_at_ms": 2960400,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e003532",
+          "available_at_ms": 5620400,
+          "team_id": "HOME",
+          "score": [
+            1,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2271,
+        "snapshots": 2271,
+        "analysis_snapshot_frames": 2271,
+        "analyzable_snapshots": 2271,
+        "predicted_receiving_points": 22597,
+        "pass_candidates": 22597,
+        "HOME_pass_candidates": 11670,
+        "outfield_receivers": 20352,
+        "keeper_receivers": 2245,
+        "period_1": 1165,
+        "AWAY_pass_candidates": 10927,
+        "period_2": 1106,
+        "substitute_receivers": 1125
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W01-HUL-FUL",
+      "final_score": [
+        1,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e001505",
+          "available_at_ms": 2406400,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e002792",
+          "available_at_ms": 4517200,
+          "team_id": "HOME",
+          "score": [
+            1,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2269,
+        "snapshots": 2269,
+        "analysis_snapshot_frames": 2269,
+        "analyzable_snapshots": 2269,
+        "predicted_receiving_points": 22584,
+        "pass_candidates": 22584,
+        "HOME_pass_candidates": 11930,
+        "outfield_receivers": 20362,
+        "keeper_receivers": 2222,
+        "period_1": 1157,
+        "AWAY_pass_candidates": 10654,
+        "period_2": 1112,
+        "substitute_receivers": 1198
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W01-LEE-CRY",
+      "final_score": [
+        0,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e000327",
+          "available_at_ms": 530000,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2268,
+        "snapshots": 2268,
+        "analysis_snapshot_frames": 2268,
+        "analyzable_snapshots": 2268,
+        "predicted_receiving_points": 22506,
+        "pass_candidates": 22506,
+        "HOME_pass_candidates": 10940,
+        "outfield_receivers": 20276,
+        "keeper_receivers": 2230,
+        "period_1": 1143,
+        "AWAY_pass_candidates": 11566,
+        "period_2": 1125,
+        "substitute_receivers": 1167
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W01-MCI-CHE",
+      "final_score": [
+        2,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e001169",
+          "available_at_ms": 1831800,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        },
+        {
+          "event_id": "e003039",
+          "available_at_ms": 4835800,
+          "team_id": "HOME",
+          "score": [
+            2,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2250,
+        "snapshots": 2250,
+        "analysis_snapshot_frames": 2250,
+        "analyzable_snapshots": 2250,
+        "predicted_receiving_points": 22399,
+        "pass_candidates": 22399,
+        "HOME_pass_candidates": 11060,
+        "outfield_receivers": 20184,
+        "keeper_receivers": 2215,
+        "period_1": 1162,
+        "AWAY_pass_candidates": 11339,
+        "period_2": 1088,
+        "substitute_receivers": 1138
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W01-NEW-BRE",
+      "final_score": [
+        1,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e000154",
+          "available_at_ms": 243600,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2295,
+        "snapshots": 2295,
+        "analysis_snapshot_frames": 2295,
+        "analyzable_snapshots": 2295,
+        "predicted_receiving_points": 22778,
+        "pass_candidates": 22778,
+        "HOME_pass_candidates": 11770,
+        "outfield_receivers": 20525,
+        "keeper_receivers": 2253,
+        "period_1": 1145,
+        "AWAY_pass_candidates": 11008,
+        "period_2": 1150,
+        "substitute_receivers": 1242
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W01-SUN-AVL",
+      "final_score": [
+        3,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e000766",
+          "available_at_ms": 1225000,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        },
+        {
+          "event_id": "e001311",
+          "available_at_ms": 2117600,
+          "team_id": "HOME",
+          "score": [
+            2,
+            0
+          ]
+        },
+        {
+          "event_id": "e001460",
+          "available_at_ms": 2365600,
+          "team_id": "HOME",
+          "score": [
+            3,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2252,
+        "snapshots": 2252,
+        "analysis_snapshot_frames": 2252,
+        "analyzable_snapshots": 2252,
+        "predicted_receiving_points": 22339,
+        "pass_candidates": 22339,
+        "HOME_pass_candidates": 10870,
+        "outfield_receivers": 20130,
+        "keeper_receivers": 2209,
+        "period_1": 1110,
+        "AWAY_pass_candidates": 11469,
+        "period_2": 1142,
+        "substitute_receivers": 1270
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W01-TOT-ARS",
+      "final_score": [
+        1,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e000318",
+          "available_at_ms": 511400,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e003509",
+          "available_at_ms": 5575800,
+          "team_id": "HOME",
+          "score": [
+            1,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2274,
+        "snapshots": 2274,
+        "analysis_snapshot_frames": 2274,
+        "analyzable_snapshots": 2274,
+        "predicted_receiving_points": 22641,
+        "pass_candidates": 22641,
+        "HOME_pass_candidates": 11280,
+        "outfield_receivers": 20407,
+        "keeper_receivers": 2234,
+        "period_1": 1136,
+        "AWAY_pass_candidates": 11361,
+        "period_2": 1138,
+        "substitute_receivers": 1178
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W02-ARS-SUN",
+      "final_score": [
+        2,
+        2
+      ],
+      "goals": [
+        {
+          "event_id": "e000393",
+          "available_at_ms": 636400,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e000715",
+          "available_at_ms": 1140600,
+          "team_id": "HOME",
+          "score": [
+            1,
+            1
+          ]
+        },
+        {
+          "event_id": "e001134",
+          "available_at_ms": 1797400,
+          "team_id": "HOME",
+          "score": [
+            2,
+            1
+          ]
+        },
+        {
+          "event_id": "e001433",
+          "available_at_ms": 2275200,
+          "team_id": "AWAY",
+          "score": [
+            2,
+            2
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2242,
+        "snapshots": 2242,
+        "analysis_snapshot_frames": 2242,
+        "analyzable_snapshots": 2242,
+        "predicted_receiving_points": 22234,
+        "pass_candidates": 22234,
+        "HOME_pass_candidates": 9560,
+        "outfield_receivers": 20027,
+        "keeper_receivers": 2207,
+        "period_1": 1113,
+        "AWAY_pass_candidates": 12674,
+        "period_2": 1129,
+        "substitute_receivers": 1130
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W02-AVL-NEW",
+      "final_score": [
+        1,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e001474",
+          "available_at_ms": 2363800,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2296,
+        "snapshots": 2296,
+        "analysis_snapshot_frames": 2296,
+        "analyzable_snapshots": 2296,
+        "predicted_receiving_points": 22871,
+        "pass_candidates": 22871,
+        "HOME_pass_candidates": 11940,
+        "outfield_receivers": 20607,
+        "keeper_receivers": 2264,
+        "period_1": 1165,
+        "AWAY_pass_candidates": 10931,
+        "period_2": 1131,
+        "substitute_receivers": 1265
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W02-BRE-MCI",
+      "final_score": [
+        1,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e000060",
+          "available_at_ms": 102200,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e001166",
+          "available_at_ms": 1838800,
+          "team_id": "HOME",
+          "score": [
+            1,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2283,
+        "snapshots": 2283,
+        "analysis_snapshot_frames": 2283,
+        "analyzable_snapshots": 2283,
+        "predicted_receiving_points": 22702,
+        "pass_candidates": 22702,
+        "HOME_pass_candidates": 9810,
+        "outfield_receivers": 20466,
+        "keeper_receivers": 2236,
+        "period_1": 1168,
+        "AWAY_pass_candidates": 12892,
+        "period_2": 1115,
+        "substitute_receivers": 1129
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W02-CHE-LEE",
+      "final_score": [
+        1,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e001904",
+          "available_at_ms": 2965400,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2256,
+        "snapshots": 2256,
+        "analysis_snapshot_frames": 2256,
+        "analyzable_snapshots": 2256,
+        "predicted_receiving_points": 22426,
+        "pass_candidates": 22426,
+        "HOME_pass_candidates": 9540,
+        "outfield_receivers": 20212,
+        "keeper_receivers": 2214,
+        "period_1": 1146,
+        "AWAY_pass_candidates": 12886,
+        "period_2": 1110,
+        "substitute_receivers": 1062
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W02-CRY-HUL",
+      "final_score": [
+        3,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e002285",
+          "available_at_ms": 3642800,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        },
+        {
+          "event_id": "e002672",
+          "available_at_ms": 4295000,
+          "team_id": "HOME",
+          "score": [
+            2,
+            0
+          ]
+        },
+        {
+          "event_id": "e003435",
+          "available_at_ms": 5504000,
+          "team_id": "HOME",
+          "score": [
+            3,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2282,
+        "snapshots": 2282,
+        "analysis_snapshot_frames": 2282,
+        "analyzable_snapshots": 2282,
+        "predicted_receiving_points": 22691,
+        "pass_candidates": 22691,
+        "HOME_pass_candidates": 11350,
+        "outfield_receivers": 20453,
+        "keeper_receivers": 2238,
+        "period_1": 1166,
+        "AWAY_pass_candidates": 11341,
+        "period_2": 1116,
+        "substitute_receivers": 1158
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W02-FUL-EVE",
+      "final_score": [
+        0,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e002890",
+          "available_at_ms": 4544200,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2286,
+        "snapshots": 2286,
+        "analysis_snapshot_frames": 2286,
+        "analyzable_snapshots": 2286,
+        "predicted_receiving_points": 22694,
+        "pass_candidates": 22694,
+        "HOME_pass_candidates": 13720,
+        "outfield_receivers": 20449,
+        "keeper_receivers": 2245,
+        "period_1": 1177,
+        "AWAY_pass_candidates": 8974,
+        "period_2": 1109,
+        "substitute_receivers": 1118
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W02-IPS-COV",
+      "final_score": [
+        1,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e001741",
+          "available_at_ms": 2709600,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2279,
+        "snapshots": 2279,
+        "analysis_snapshot_frames": 2279,
+        "analyzable_snapshots": 2279,
+        "predicted_receiving_points": 22600,
+        "pass_candidates": 22600,
+        "HOME_pass_candidates": 10730,
+        "outfield_receivers": 20364,
+        "keeper_receivers": 2236,
+        "period_1": 1152,
+        "AWAY_pass_candidates": 11870,
+        "period_2": 1127,
+        "substitute_receivers": 1217
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W02-LIV-BHA",
+      "final_score": [
+        0,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e001629",
+          "available_at_ms": 2594400,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2334,
+        "snapshots": 2334,
+        "analysis_snapshot_frames": 2334,
+        "analyzable_snapshots": 2334,
+        "predicted_receiving_points": 23178,
+        "pass_candidates": 23178,
+        "HOME_pass_candidates": 12430,
+        "outfield_receivers": 20886,
+        "keeper_receivers": 2292,
+        "period_1": 1182,
+        "AWAY_pass_candidates": 10748,
+        "period_2": 1152,
+        "substitute_receivers": 1225
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W02-MUN-BOU",
+      "final_score": [
+        1,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e001533",
+          "available_at_ms": 2388600,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e002490",
+          "available_at_ms": 3921800,
+          "team_id": "HOME",
+          "score": [
+            1,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2281,
+        "snapshots": 2281,
+        "analysis_snapshot_frames": 2281,
+        "analyzable_snapshots": 2281,
+        "predicted_receiving_points": 22647,
+        "pass_candidates": 22647,
+        "HOME_pass_candidates": 11270,
+        "outfield_receivers": 20407,
+        "keeper_receivers": 2240,
+        "period_1": 1167,
+        "AWAY_pass_candidates": 11377,
+        "period_2": 1114,
+        "substitute_receivers": 1143
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W02-NFO-TOT",
+      "final_score": [
+        3,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e001399",
+          "available_at_ms": 2200800,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e001972",
+          "available_at_ms": 3179600,
+          "team_id": "HOME",
+          "score": [
+            1,
+            1
+          ]
+        },
+        {
+          "event_id": "e002268",
+          "available_at_ms": 3674400,
+          "team_id": "HOME",
+          "score": [
+            2,
+            1
+          ]
+        },
+        {
+          "event_id": "e003734",
+          "available_at_ms": 5970200,
+          "team_id": "HOME",
+          "score": [
+            3,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2320,
+        "snapshots": 2320,
+        "analysis_snapshot_frames": 2320,
+        "analyzable_snapshots": 2320,
+        "predicted_receiving_points": 23042,
+        "pass_candidates": 23042,
+        "HOME_pass_candidates": 11540,
+        "outfield_receivers": 20751,
+        "keeper_receivers": 2291,
+        "period_1": 1160,
+        "AWAY_pass_candidates": 11502,
+        "period_2": 1160,
+        "substitute_receivers": 1326
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W03-BHA-IPS",
+      "final_score": [
+        2,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e000418",
+          "available_at_ms": 669400,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e001065",
+          "available_at_ms": 1714000,
+          "team_id": "HOME",
+          "score": [
+            1,
+            1
+          ]
+        },
+        {
+          "event_id": "e002930",
+          "available_at_ms": 4713600,
+          "team_id": "HOME",
+          "score": [
+            2,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2259,
+        "snapshots": 2259,
+        "analysis_snapshot_frames": 2259,
+        "analyzable_snapshots": 2259,
+        "predicted_receiving_points": 22444,
+        "pass_candidates": 22444,
+        "HOME_pass_candidates": 11510,
+        "outfield_receivers": 20214,
+        "keeper_receivers": 2230,
+        "period_1": 1162,
+        "AWAY_pass_candidates": 10934,
+        "period_2": 1097,
+        "substitute_receivers": 1148
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W03-BOU-LIV",
+      "final_score": [
+        1,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e000505",
+          "available_at_ms": 791200,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2276,
+        "snapshots": 2276,
+        "analysis_snapshot_frames": 2276,
+        "analyzable_snapshots": 2276,
+        "predicted_receiving_points": 22561,
+        "pass_candidates": 22561,
+        "HOME_pass_candidates": 12260,
+        "outfield_receivers": 20323,
+        "keeper_receivers": 2238,
+        "period_1": 1131,
+        "AWAY_pass_candidates": 10301,
+        "period_2": 1145,
+        "substitute_receivers": 1220
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W03-COV-FUL",
+      "final_score": [
+        1,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e000918",
+          "available_at_ms": 1459600,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e001203",
+          "available_at_ms": 1930200,
+          "team_id": "HOME",
+          "score": [
+            1,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2240,
+        "snapshots": 2240,
+        "analysis_snapshot_frames": 2240,
+        "analyzable_snapshots": 2240,
+        "predicted_receiving_points": 22299,
+        "pass_candidates": 22299,
+        "HOME_pass_candidates": 11860,
+        "outfield_receivers": 20094,
+        "keeper_receivers": 2205,
+        "period_1": 1111,
+        "AWAY_pass_candidates": 10439,
+        "period_2": 1129,
+        "substitute_receivers": 1132
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W03-EVE-CRY",
+      "final_score": [
+        1,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e002104",
+          "available_at_ms": 3341800,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e002844",
+          "available_at_ms": 4515000,
+          "team_id": "HOME",
+          "score": [
+            1,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2284,
+        "snapshots": 2284,
+        "analysis_snapshot_frames": 2284,
+        "analyzable_snapshots": 2284,
+        "predicted_receiving_points": 22793,
+        "pass_candidates": 22793,
+        "HOME_pass_candidates": 13180,
+        "outfield_receivers": 20549,
+        "keeper_receivers": 2244,
+        "period_1": 1168,
+        "AWAY_pass_candidates": 9613,
+        "period_2": 1116,
+        "substitute_receivers": 1201
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": [],
+      "regression": {
+        "players": [
+          {
+            "player_id": "H10",
+            "team_id": "HOME",
+            "jersey_number": 11,
+            "name": "Ivory Player 19",
+            "position": "ST"
+          },
+          {
+            "player_id": "A08",
+            "team_id": "AWAY",
+            "jersey_number": 10,
+            "name": "Highridge Player 15",
+            "position": "RCM"
+          }
+        ],
+        "score_at_69_30": [
+          0,
+          1
+        ],
+        "explanation": "The first half includes five added minutes; 69:30 maps through metadata period start, not wall-clock milliseconds.",
+        "preview_score_differs_from_final": true
+      }
+    },
+    {
+      "match_id": "PL26-W03-HUL-CHE",
+      "final_score": [
+        0,
+        3
+      ],
+      "goals": [
+        {
+          "event_id": "e002864",
+          "available_at_ms": 4572600,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e003302",
+          "available_at_ms": 5290400,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            2
+          ]
+        },
+        {
+          "event_id": "e003690",
+          "available_at_ms": 5932000,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            3
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2257,
+        "snapshots": 2257,
+        "analysis_snapshot_frames": 2257,
+        "analyzable_snapshots": 2257,
+        "predicted_receiving_points": 22458,
+        "pass_candidates": 22458,
+        "HOME_pass_candidates": 12100,
+        "outfield_receivers": 20248,
+        "keeper_receivers": 2210,
+        "period_1": 1146,
+        "AWAY_pass_candidates": 10358,
+        "period_2": 1111,
+        "substitute_receivers": 1152
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W03-LEE-BRE",
+      "final_score": [
+        2,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e000880",
+          "available_at_ms": 1366800,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        },
+        {
+          "event_id": "e001069",
+          "available_at_ms": 1690200,
+          "team_id": "AWAY",
+          "score": [
+            1,
+            1
+          ]
+        },
+        {
+          "event_id": "e001114",
+          "available_at_ms": 1776000,
+          "team_id": "HOME",
+          "score": [
+            2,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2263,
+        "snapshots": 2263,
+        "analysis_snapshot_frames": 2263,
+        "analyzable_snapshots": 2263,
+        "predicted_receiving_points": 22562,
+        "pass_candidates": 22562,
+        "HOME_pass_candidates": 13110,
+        "outfield_receivers": 20335,
+        "keeper_receivers": 2227,
+        "period_1": 1127,
+        "AWAY_pass_candidates": 9452,
+        "period_2": 1136,
+        "substitute_receivers": 1172
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W03-MCI-AVL",
+      "final_score": [
+        0,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e000836",
+          "available_at_ms": 1356600,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2270,
+        "snapshots": 2270,
+        "analysis_snapshot_frames": 2270,
+        "analyzable_snapshots": 2269,
+        "predicted_receiving_points": 22576,
+        "pass_candidates": 22576,
+        "HOME_pass_candidates": 10760,
+        "outfield_receivers": 20342,
+        "keeper_receivers": 2234,
+        "period_1": 1156,
+        "AWAY_pass_candidates": 11816,
+        "period_2": 1113,
+        "substitute_receivers": 1182,
+        "unsupported_terminal_snapshots": 1
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W03-NEW-SUN",
+      "final_score": [
+        2,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e001946",
+          "available_at_ms": 3104600,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        },
+        {
+          "event_id": "e002594",
+          "available_at_ms": 4141800,
+          "team_id": "HOME",
+          "score": [
+            2,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2258,
+        "snapshots": 2258,
+        "analysis_snapshot_frames": 2258,
+        "analyzable_snapshots": 2258,
+        "predicted_receiving_points": 22476,
+        "pass_candidates": 22476,
+        "HOME_pass_candidates": 11510,
+        "outfield_receivers": 20265,
+        "keeper_receivers": 2211,
+        "period_1": 1158,
+        "AWAY_pass_candidates": 10966,
+        "period_2": 1100,
+        "substitute_receivers": 1174
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W03-NFO-ARS",
+      "final_score": [
+        1,
+        3
+      ],
+      "goals": [
+        {
+          "event_id": "e000979",
+          "available_at_ms": 1533600,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e001126",
+          "available_at_ms": 1788800,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            2
+          ]
+        },
+        {
+          "event_id": "e001772",
+          "available_at_ms": 2786800,
+          "team_id": "HOME",
+          "score": [
+            1,
+            2
+          ]
+        },
+        {
+          "event_id": "e001907",
+          "available_at_ms": 3043400,
+          "team_id": "AWAY",
+          "score": [
+            1,
+            3
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2281,
+        "snapshots": 2281,
+        "analysis_snapshot_frames": 2281,
+        "analyzable_snapshots": 2281,
+        "predicted_receiving_points": 22687,
+        "pass_candidates": 22687,
+        "HOME_pass_candidates": 11840,
+        "outfield_receivers": 20438,
+        "keeper_receivers": 2249,
+        "period_1": 1145,
+        "AWAY_pass_candidates": 10847,
+        "period_2": 1136,
+        "substitute_receivers": 1217
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W03-TOT-MUN",
+      "final_score": [
+        0,
+        0
+      ],
+      "goals": [],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2331,
+        "snapshots": 2331,
+        "analysis_snapshot_frames": 2331,
+        "analyzable_snapshots": 2331,
+        "predicted_receiving_points": 23181,
+        "pass_candidates": 23181,
+        "HOME_pass_candidates": 11750,
+        "outfield_receivers": 20880,
+        "keeper_receivers": 2301,
+        "period_1": 1206,
+        "AWAY_pass_candidates": 11431,
+        "period_2": 1125,
+        "substitute_receivers": 1182
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W04-ARS-NEW",
+      "final_score": [
+        0,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e002475",
+          "available_at_ms": 3934800,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2286,
+        "snapshots": 2286,
+        "analysis_snapshot_frames": 2286,
+        "analyzable_snapshots": 2286,
+        "predicted_receiving_points": 22741,
+        "pass_candidates": 22741,
+        "HOME_pass_candidates": 12120,
+        "outfield_receivers": 20489,
+        "keeper_receivers": 2252,
+        "period_1": 1169,
+        "AWAY_pass_candidates": 10621,
+        "period_2": 1117,
+        "substitute_receivers": 1055
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W04-AVL-LEE",
+      "final_score": [
+        0,
+        2
+      ],
+      "goals": [
+        {
+          "event_id": "e000714",
+          "available_at_ms": 1124200,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e001053",
+          "available_at_ms": 1668000,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            2
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2265,
+        "snapshots": 2265,
+        "analysis_snapshot_frames": 2265,
+        "analyzable_snapshots": 2265,
+        "predicted_receiving_points": 22558,
+        "pass_candidates": 22558,
+        "HOME_pass_candidates": 11170,
+        "outfield_receivers": 20325,
+        "keeper_receivers": 2233,
+        "period_1": 1122,
+        "AWAY_pass_candidates": 11388,
+        "period_2": 1143,
+        "substitute_receivers": 1137
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W04-BRE-HUL",
+      "final_score": [
+        2,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e000507",
+          "available_at_ms": 788800,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        },
+        {
+          "event_id": "e003786",
+          "available_at_ms": 5928800,
+          "team_id": "HOME",
+          "score": [
+            2,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2281,
+        "snapshots": 2281,
+        "analysis_snapshot_frames": 2281,
+        "analyzable_snapshots": 2281,
+        "predicted_receiving_points": 22656,
+        "pass_candidates": 22656,
+        "HOME_pass_candidates": 11190,
+        "outfield_receivers": 20423,
+        "keeper_receivers": 2233,
+        "period_1": 1147,
+        "AWAY_pass_candidates": 11466,
+        "period_2": 1134,
+        "substitute_receivers": 1113
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W04-CHE-EVE",
+      "final_score": [
+        2,
+        2
+      ],
+      "goals": [
+        {
+          "event_id": "e000169",
+          "available_at_ms": 276000,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e000281",
+          "available_at_ms": 468200,
+          "team_id": "HOME",
+          "score": [
+            1,
+            1
+          ]
+        },
+        {
+          "event_id": "e000570",
+          "available_at_ms": 939600,
+          "team_id": "AWAY",
+          "score": [
+            1,
+            2
+          ]
+        },
+        {
+          "event_id": "e003343",
+          "available_at_ms": 5316800,
+          "team_id": "HOME",
+          "score": [
+            2,
+            2
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2274,
+        "snapshots": 2274,
+        "analysis_snapshot_frames": 2274,
+        "analyzable_snapshots": 2274,
+        "predicted_receiving_points": 22642,
+        "pass_candidates": 22642,
+        "HOME_pass_candidates": 11000,
+        "outfield_receivers": 20412,
+        "keeper_receivers": 2230,
+        "period_1": 1126,
+        "AWAY_pass_candidates": 11642,
+        "period_2": 1148,
+        "substitute_receivers": 1202
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W04-CRY-COV",
+      "final_score": [
+        2,
+        3
+      ],
+      "goals": [
+        {
+          "event_id": "e000582",
+          "available_at_ms": 927600,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        },
+        {
+          "event_id": "e001098",
+          "available_at_ms": 1753000,
+          "team_id": "AWAY",
+          "score": [
+            1,
+            1
+          ]
+        },
+        {
+          "event_id": "e001312",
+          "available_at_ms": 2107600,
+          "team_id": "HOME",
+          "score": [
+            2,
+            1
+          ]
+        },
+        {
+          "event_id": "e001674",
+          "available_at_ms": 2695000,
+          "team_id": "AWAY",
+          "score": [
+            2,
+            2
+          ]
+        },
+        {
+          "event_id": "e002710",
+          "available_at_ms": 4372400,
+          "team_id": "AWAY",
+          "score": [
+            2,
+            3
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2234,
+        "snapshots": 2234,
+        "analysis_snapshot_frames": 2234,
+        "analyzable_snapshots": 2234,
+        "predicted_receiving_points": 22210,
+        "pass_candidates": 22210,
+        "HOME_pass_candidates": 11380,
+        "outfield_receivers": 20012,
+        "keeper_receivers": 2198,
+        "period_1": 1129,
+        "AWAY_pass_candidates": 10830,
+        "period_2": 1105,
+        "substitute_receivers": 1141
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W04-FUL-BHA",
+      "final_score": [
+        0,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e000521",
+          "available_at_ms": 837400,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2283,
+        "snapshots": 2283,
+        "analysis_snapshot_frames": 2283,
+        "analyzable_snapshots": 2283,
+        "predicted_receiving_points": 22681,
+        "pass_candidates": 22681,
+        "HOME_pass_candidates": 10670,
+        "outfield_receivers": 20436,
+        "keeper_receivers": 2245,
+        "period_1": 1159,
+        "AWAY_pass_candidates": 12011,
+        "period_2": 1124,
+        "substitute_receivers": 1212
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W04-IPS-BOU",
+      "final_score": [
+        1,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e002430",
+          "available_at_ms": 3857600,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2263,
+        "snapshots": 2263,
+        "analysis_snapshot_frames": 2263,
+        "analyzable_snapshots": 2262,
+        "predicted_receiving_points": 22465,
+        "pass_candidates": 22465,
+        "HOME_pass_candidates": 11880,
+        "outfield_receivers": 20237,
+        "keeper_receivers": 2228,
+        "period_1": 1173,
+        "AWAY_pass_candidates": 10585,
+        "period_2": 1089,
+        "substitute_receivers": 1143,
+        "unsupported_terminal_snapshots": 1
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W04-LIV-TOT",
+      "final_score": [
+        1,
+        2
+      ],
+      "goals": [
+        {
+          "event_id": "e000353",
+          "available_at_ms": 591200,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "event_id": "e002034",
+          "available_at_ms": 3251800,
+          "team_id": "HOME",
+          "score": [
+            1,
+            1
+          ]
+        },
+        {
+          "event_id": "e002678",
+          "available_at_ms": 4281600,
+          "team_id": "AWAY",
+          "score": [
+            1,
+            2
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2270,
+        "snapshots": 2270,
+        "analysis_snapshot_frames": 2270,
+        "analyzable_snapshots": 2270,
+        "predicted_receiving_points": 22544,
+        "pass_candidates": 22544,
+        "HOME_pass_candidates": 11570,
+        "outfield_receivers": 20306,
+        "keeper_receivers": 2238,
+        "period_1": 1138,
+        "AWAY_pass_candidates": 10974,
+        "period_2": 1132,
+        "substitute_receivers": 1184
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W04-MUN-NFO",
+      "final_score": [
+        0,
+        1
+      ],
+      "goals": [
+        {
+          "event_id": "e001348",
+          "available_at_ms": 2112400,
+          "team_id": "AWAY",
+          "score": [
+            0,
+            1
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2263,
+        "snapshots": 2263,
+        "analysis_snapshot_frames": 2263,
+        "analyzable_snapshots": 2263,
+        "predicted_receiving_points": 22580,
+        "pass_candidates": 22580,
+        "HOME_pass_candidates": 11380,
+        "outfield_receivers": 20355,
+        "keeper_receivers": 2225,
+        "period_1": 1107,
+        "AWAY_pass_candidates": 11200,
+        "period_2": 1156,
+        "substitute_receivers": 1189
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    },
+    {
+      "match_id": "PL26-W04-SUN-MCI",
+      "final_score": [
+        2,
+        0
+      ],
+      "goals": [
+        {
+          "event_id": "e000314",
+          "available_at_ms": 515000,
+          "team_id": "HOME",
+          "score": [
+            1,
+            0
+          ]
+        },
+        {
+          "event_id": "e003468",
+          "available_at_ms": 5528800,
+          "team_id": "HOME",
+          "score": [
+            2,
+            0
+          ]
+        }
+      ],
+      "counts": {
+        "preview_frames": 301,
+        "statistics_frames": 6001,
+        "source_decision_frames": 2294,
+        "snapshots": 2294,
+        "analysis_snapshot_frames": 2294,
+        "analyzable_snapshots": 2294,
+        "predicted_receiving_points": 22823,
+        "pass_candidates": 22823,
+        "HOME_pass_candidates": 10790,
+        "outfield_receivers": 20555,
+        "keeper_receivers": 2268,
+        "period_1": 1170,
+        "AWAY_pass_candidates": 12033,
+        "period_2": 1124,
+        "substitute_receivers": 1158
+      },
+      "active_lineups": 6,
+      "full_tracking_available": false,
+      "errors": []
+    }
+  ],
+  "totals": {
+    "preview_frames": 12040,
+    "statistics_frames": 240040,
+    "source_decision_frames": 91031,
+    "snapshots": 91031,
+    "analysis_snapshot_frames": 91031,
+    "analyzable_snapshots": 91029,
+    "predicted_receiving_points": 904995,
+    "pass_candidates": 904995,
+    "HOME_pass_candidates": 461550,
+    "outfield_receivers": 815466,
+    "keeper_receivers": 89529,
+    "period_1": 46006,
+    "AWAY_pass_candidates": 443445,
+    "period_2": 45023,
+    "substitute_receivers": 47033,
+    "unsupported_terminal_snapshots": 2
+  },
+  "errors": [],
+  "limitations": [
+    "Full tracking is checked only if present; missing files are not fabricated.",
+    "All cached candidate identities are checked; full Q2 recomputation uses a separate regression sample.",
+    "This audit tests consistency, not real-football tactical validity."
+  ],
+  "match_count": 40,
+  "full_tracking_matches": 0,
+  "source_commit": "96d13a377e98602c9998e3ebb82186843762febf",
+  "status": "pass"
+}

@@ -206,3 +206,42 @@ This work does not invoke the generator and does not rewrite matches. See `../..
 Other formal response definitions: `catalog_response`, `index_response`, `routes_response`, `actual_response`; the bound request is `bound_request`. The filter index carries historical action types and a post-match opportunity-loss classification; it is used only for post-match node selection and is not a pre-action model input. When an Agent gives a pre-action explanation it should rely on context/analyze, and must not treat the index's historical classification as an observed future gain.
 
 Local numerical research CLI: `python3 -m decision_analysis.diagnostics --match PL26-W01-MCI-CHE --decision d000001`. `--snapshot` also works; the default picks the registered current match / node and does not use the old fixed cases or the old league. It outputs the assumption sensitivity of the risk factors 0.8/1.2, not confidence intervals.
+
+
+## Unified product UI (2026-10-27)
+
+The product entry is `index.html?view=stats&analysis=decisions&match=<match_id>`.
+`Match Report` and `Decision Analysis` are separate sub-tabs. The old Coach and
+Action Review files/APIs remain compatible but are no longer main navigation entries.
+Replay contains only a brief Q2 hint and a link to the exact registered decision.
+
+The numerical engine, canonical schemas, four Agent roles, Responses transport,
+server-side credentials, budget/reviewer checks and Azure startup configuration are unchanged.
+
+### Agent binding and lifecycle
+
+1. GET `context` for the selected match and decision; retain its server-issued `request`.
+2. POST `analyze` with that request; retain `candidate_set_id`, `snapshot_id`, and `data_version`.
+3. POST `agents` with `{request: {...context.request, question, mode, language}, candidate_set_id}`.
+   `mode` must be `fan` or `analyst`; `language` must be `en` or `zh`.
+4. Reject responses with different snapshot/data/candidate identities or candidate ranking.
+   Render only evidence IDs present in the original public response.
+5. On a match/decision change, abort the old request and invalidate its lifecycle token.
+   Model unavailability never removes deterministic Q2 results.
+
+Historical execution and `/actual` are separate retrospective data; the UI does not
+append them to the Agent request. Do not substitute `/api/decision` pass-only results.
+
+### Display identity and geometry
+
+`pass:H10` remains an internal action ID. Resolve `H10` using the selected match's
+`metadata.players`, then resolve its team using `metadata.teams`. The common display
+is `Pass to EVE #11 · Ivory Player 19`, not “player 10”. Identity failures are explicit
+and fail closed before normal candidate rendering. Validate active membership,
+team membership, self-pass exclusion, diagnostic recipient and predicted target.
+The standard Q2 pass uses a quarter-second velocity lead. A gold ring marks the
+current receiver and a diamond marks the predicted receiving point on the shared Replay pitch.
+
+The read-only full-league audit is `npm run audit:decisions`; outputs are in
+`docs/reports/decision-consistency.json`. Its reports distinguish unavailable full
+tracking, two terminal unsupported snapshots and valid pre-action comparisons.

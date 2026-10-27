@@ -4,3 +4,20 @@
 @media(max-width:600px){.decision-toolbar,.decision-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.decision-detail-card{padding:14px}.action-conditions-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.decision-table{min-width:580px}.decision-counterfactual-shell{padding:16px}.decision-actions .button{font-size:10px}.decision-detail-heading h2{font-size:20px}.decision-header p{margin-bottom:0}}
 .decision-workspace>*{min-width:0}.decision-row>span{min-width:0;overflow-wrap:anywhere}.action-conditions-grid dd,.action-conditions-grid small{overflow-wrap:anywhere}
 @media(max-width:1000px){.decision-workspace{grid-template-columns:minmax(0,1fr)}}
+/* Unified Q2 surface; no additional pitch palette or online scoring model. */
+#score-context{font-size:11px;line-height:1.6;color:#657385}
+.analysis-subtabs{flex-wrap:wrap}.analysis-subtabs [role=tab]:focus-visible{outline:2px solid #d97841;outline-offset:3px}
+#decision-analysis[hidden],#match-report-panel[hidden]{display:none}
+.decision-agent{margin-top:24px;padding:20px;border:1px solid #e8ecf1;border-radius:10px;background:#fafbfc;font-size:12px;line-height:1.8;overflow-wrap:anywhere}
+.decision-agent h3{margin:0;font-size:18px}.decision-agent form{display:grid;gap:12px}
+.decision-agent label{display:grid;gap:6px;color:#657385;font-size:11px}
+.decision-agent-options{display:flex;gap:12px;flex-wrap:wrap}
+.decision-agent select,.decision-agent textarea{font:inherit;border:1px solid #dce2e9;border-radius:7px;padding:10px;background:#fff;color:#34495c;max-width:100%}
+.decision-agent textarea{width:100%;box-sizing:border-box;min-height:85px;resize:vertical}
+.decision-agent form>.button{justify-self:start}.decision-agent-answer{white-space:pre-wrap;color:#34495c}
+.decision-agent pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:10px}.decision-agent details{border-top:1px solid #e5eaf0;padding-top:10px;margin-top:12px}
+#replay-open-decision{display:inline-block;white-space:normal;line-height:1.5}
+@media(max-width:600px){.decision-agent{padding:14px}.decision-agent-options{display:grid;grid-template-columns:1fr 1fr}.analysis-subtabs .button{font-size:11px}.decision-toolbar label{font-size:11px}}
+
+.decision-list-card #da-list{max-height:min(760px,75vh);overflow:auto}.decision-list-card>#da-earlier,.decision-list-card>#da-window{margin:14px}
+@media(max-width:1000px){.decision-list-card #da-list{max-height:300px}}

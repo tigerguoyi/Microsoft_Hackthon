@@ -1,6 +1,8 @@
-import {renderPitch,pitchGeometry,hitTestPlayer,hitTestPitch} from './pitch-renderer.js?v=integrated-da-2';
-import {createDecisionView} from './decision-analysis-view.js?v=integrated-da-1';
-import {createReplayDesk} from './replay-desk.js?v=2.8.0';
+import {renderPitch,pitchGeometry,hitTestPlayer,hitTestPitch} from './pitch-renderer.js?v=unified-1';
+import {createDecisionView} from './decision-analysis-view.js?v=unified-1';
+import {createReplayDesk} from './replay-desk.js?v=unified-1';
+import {playerLabel as identityLabel} from './player-identity.js';
+import {validateMatchBundle,scoreAt,sameScore,scoreContext} from './score-context.js';
 import { playerStats, heatmapSVG } from './player-analysis.js';
 import { januarySchedule, calendarDays } from './calendar.js';
 import { CURRENT_MATCHWEEK, HOME_CLUB_KEY, clubDashboard } from './club-home.js';
@@ -22,7 +24,12 @@ const decisionHost=$('#decision-analysis');
 const decisionView=decisionHost
   ?createDecisionView(decisionHost,time=>{changeView('replay');seek(time);})
   :{show(){},clear(){},refreshReplayAvailability(){},setMatch(){}};
-const replayDesk=createReplayDesk(()=>state);
+const replayDesk=createReplayDesk(()=>state,openDecisionAnalysis);
+function openDecisionAnalysis(decisionId){
+  setAnalysisTab('decisions');changeView('stats');
+  if(decisionId)decisionView.openDecision(decisionId);
+}
+$('#nav-decision-analysis').onclick=event=>{event.preventDefault();openDecisionAnalysis();};
 function setAnalysisTab(tab){
   analysisTab=tab==='decisions'?'decisions':'report';
   if($('#match-report-panel'))$('#match-report-panel').hidden=analysisTab==='decisions';
@@ -37,7 +44,7 @@ let worker = null, allFixtures = [], lastTick = 0, lastUI = 0, eventKey = '', st
 const teamMeta = id => state.metadata?.teams.find(t => t.team_id === id);
 const teamName = id => teamMeta(id)?.short_name || teamMeta(id)?.name || 'Match';
 const numberOf = id => state.metadata?.players.find(p => p.player_id === id)?.jersey_number ?? '—';
-const playerLabel = id => id ? `${teamName(state.metadata.players.find(p => p.player_id === id)?.team_id)} #${numberOf(id)}` : 'None';
+const playerLabel = id => id ? identityLabel(state.metadata,id) : 'None';
 const clock = (time, period) => formatClock(time, state.metadata, period);
 const display = n => n == null ? '—' : Number.isInteger(n) ? n.toLocaleString('en-GB') : n.toFixed(1);
 const phaseNames = { carry: 'Carry', pass: 'Passing', shot: 'Shooting', restart_setup: 'Dead ball · restart setup', ended: 'Full time' };
@@ -128,7 +135,7 @@ function buildWeekSelect() {
 function renderMatchOptions(weekNumber) {
   const week = state.league.weeks.find(item => item.week === Number(weekNumber));
   $('#match-select').innerHTML = (week?.matches || []).map(fixture =>
-    `<option value="${escape(fixture.match_id)}">${fixture.featured ? '★ ' : ''}${escape(fixture.home_name)} ${fixture.score[0]}-${fixture.score[1]} ${escape(fixture.away_name)}${fixture.tracking === 'full' ? ' · Full replay' : ''}</option>`).join('');
+    `<option value="${escape(fixture.match_id)}">${fixture.featured ? '★ ' : ''}${escape(fixture.home_name)} ${fixture.score[0]}–${fixture.score[1]} ${escape(fixture.away_name)} · FT${fixture.tracking === 'full' ? ' · Full replay if available' : ' · Preview'}</option>`).join('');
 }
 
 function syncPicker(fixture) {
@@ -223,7 +230,11 @@ async function loadMatch(matchId, { updateUrl = true } = {}) {
   const fixture = allFixtures.find(item => item.match_id === matchId);
   if (!fixture) return;
   const token = ++state.loadToken;
-  decisionView.clear();
+  decisionView.clear();replayDesk.clear();
+  if(state.metadata && state.metadata.match_id!==matchId){const url=new URL(location.href);url.searchParams.delete('decision');url.searchParams.delete('action');history.replaceState(null,'',url);}
+  $('#home-score').textContent='–';$('#away-score').textContent='–';$('#clock').textContent='--:--';
+  $('#score-context').textContent='Loading match · score unavailable';
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
   if (worker) { worker.terminate(); worker = null; }
   state.packed = null;
   state.report = null;
@@ -244,7 +255,8 @@ async function loadMatch(matchId, { updateUrl = true } = {}) {
       fetchJsonl(`${base}events.jsonl`), fetchJsonl(`${base}states.jsonl`),
     ]);
     if (token !== state.loadToken) return;
-    Object.assign(state, { metadata, summary, preview, events: events.sort((a, b) => a.available_at_ms - b.available_at_ms || a.sequence - b.sequence), snapshots, time: preview.start_ms, fixture, selected: 'H10' });
+    const goals=validateMatchBundle(fixture,metadata,summary,preview,events);
+    Object.assign(state, { metadata, summary, preview, goals, events: events.sort((a, b) => a.available_at_ms - b.available_at_ms || a.sequence - b.sequence), snapshots, time: preview.start_ms, fixture, selected: 'H10' });
     updateMatchChrome(fixture, metadata);
     syncPicker(fixture);
     buildPlayerSelect();
@@ -263,6 +275,7 @@ async function loadMatch(matchId, { updateUrl = true } = {}) {
     setPlaying(false);
     eventKey = '';
     statsKey = '';
+    setPickerBusy(false);
     refresh(true);
     if (updateUrl && ['overview', 'replay', 'stats', 'lineup'].includes(state.view)) updateUrlForMatch(fixture.match_id);
     startTracking(fixture, token);
@@ -430,7 +443,7 @@ async function init() {
     const linked = allFixtures.find(fixture => fixture.match_id === requested);
     const current = allFixtures.filter(fixture => fixture.matchweek === CURRENT_MATCHWEEK);
     const initial = linked || current.find(fixture => [fixture.home_club_id, fixture.away_club_id].includes(state.homeClub)) || current.find(fixture => fixture.featured) || current[0] || allFixtures[0];
-    changeView(['overview','replay','stats','lineup'].includes(initialQuery.get('view')) ? initialQuery.get('view') : linked ? 'overview' : 'home');
+    changeView(['home','overview','replay','stats','lineup','squads','settings'].includes(initialQuery.get('view')) ? initialQuery.get('view') : linked ? 'overview' : 'home');
     await loadMatch(initial.match_id, { updateUrl: Boolean(linked) });
   } catch (error) {
     $('#load-status').textContent = 'Data not ready';
@@ -593,17 +606,23 @@ function updatePlayer(frame) {
 }
 
 function refresh(force = false) {
-  if (!state.metadata || !state.preview) return;
+  if (state.loading || !state.metadata || !state.preview) return;
   state.frame = state.packed ? samplePacked(state.packed, state.time, state.metadata) : sampleFrames(state.preview.frames, state.time);
   const frame = state.frame;
   const live = state.view === 'overview' || state.view === 'replay';
   $('#post-match-banner').hidden = !(state.report && state.time >= state.metadata.duration_ms);
+  const expectedScore=scoreAt(state.goals,state.time);
+  if(!sameScore(frame.score,expectedScore)){
+    showError('Replay score conflicts with goal events. Refusing to display mixed match data.');
+    state.playing=false;$('#play').innerHTML=icon('play');$('#play').setAttribute('aria-label','Play');
+    $('#home-score').textContent='–';$('#away-score').textContent='–';$('#score-context').textContent='Replay score unavailable · data mismatch';return;
+  }
   const score = live ? frame.score : state.summary.final_score;
   $('#home-score').textContent = score[0];
   $('#away-score').textContent = score[1];
   $('#clock').textContent = live ? clock(state.time) : 'FT';
   $('#period-label').textContent = live ? (state.time >= state.metadata.duration_ms ? 'Full time' : frame.period === 1 ? 'First half' : 'Second half') : 'Full time';
-  $('#score-context').textContent = live ? 'Score synced to replay' : 'Final score';
+  $('#score-context').textContent = scoreContext({live,clock:clock(state.time),final:state.summary.final_score});
   $('#timeline-clock').textContent = clock(state.time);
   $('#timeline').value = state.time;
   const [min, max] = bounds();

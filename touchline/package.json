@@ -11,7 +11,9 @@
     "validate:schema": "node scripts/validate_contracts.mjs --dataset data data/league",
     "test:decision-analysis": "python3 -m unittest discover -s tests -p 'test_decision_integration.py'",
     "validate:decision-analysis": "node scripts/validate_decision_analysis.mjs",
-    "validate:decision-dataset": "node scripts/validate_decision_dataset.mjs"
+    "validate:decision-dataset": "node scripts/validate_decision_dataset.mjs",
+    "audit:decisions": "python3 scripts/audit_decision_consistency.py --output docs/reports/decision-consistency.json",
+    "test:unification": "node --test tests/decision-unification.test.js && python3 -m unittest discover -s tests -p test_decision_unification.py"
   },
   "devDependencies": {
     "ajv": "8.17.1",

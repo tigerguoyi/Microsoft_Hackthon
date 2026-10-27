@@ -37,6 +37,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
+      - name: Install Touchline test dependencies
+        working-directory: touchline
+        run: npm ci --ignore-scripts
       - name: node tests
         working-directory: touchline
         run: npm test

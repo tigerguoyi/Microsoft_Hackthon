@@ -4,6 +4,22 @@ Microsoft × Premier League hackathon entry for the multi-agent award. A viewer 
 fictional match and asks what the carrier could have done, and what each option cost.
 The screen does not grade the player.
 
+## Current local product (2026-10-27)
+
+Analysis now has **Match Report** and **Decision Analysis**. Use
+`touchline/index.html?match=PL26-W03-EVE-CRY&view=stats&analysis=decisions`
+for the two-step Q2 comparison, player action conditions, bound counterfactuals
+and the existing four-role AI coach. Replay keeps a brief hint and an exact-decision link.
+Legacy Coach/Action Review APIs remain available for compatibility.
+
+See [the Chinese handoff and validation report](HANDOFF_决策分析统一与数据一致性_20261027.md)
+for the full audit, unchanged-model guarantees, test results and remaining work.
+This local commit has **not** been pushed or deployed; the hosted instance may
+still run the preceding UI. Full tracking files are absent from the current
+checkout; preview animation and full-match decision snapshots remain available.
+The product Q2 engine in `touchline/decision_analysis` is separate from the
+root `inside_the_game` classification kernel documented later in this README.
+
 ## Judge path
 
 English is the default. Chinese is the second button on the decision flow.
@@ -12,8 +28,8 @@ English is the default. Chinese is the second button on the decision flow.
 
 That link opens a match with the replay desk already on screen. The model key
 lives in the instance's settings, so the four-role team answers without the
-visitor supplying anything. The hosted instance runs the same code as the
-repository; `deploy/` holds the steps that put it there.
+visitor supplying anything. The hosted instance must be redeployed to receive local changes;
+`deploy/` holds the existing deployment steps. This task did not deploy it.
 
 To run it locally instead:
 

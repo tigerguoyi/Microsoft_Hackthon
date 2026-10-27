@@ -1,0 +1,82 @@
+{
+  "schema_version": "unification-validation-1",
+  "date": "2026-10-27",
+  "timezone": "Europe/London",
+  "base_commit": "6721f0f7a3688fa805bb1e19bb5501e80e0b7c41",
+  "branch": "codex/unified-decision-analysis",
+  "reference_commit": "c1f7eddea4843b18e8e50074e7b6a41252503b7d",
+  "node_tests": {
+    "passed": 33,
+    "failed": 0
+  },
+  "touchline_python_tests": {
+    "passed": 113,
+    "failed": 0
+  },
+  "root_python_tests": {
+    "passed": 98,
+    "failed": 0,
+    "skipped_modules": 1,
+    "skip_reason": "optional agent_framework SDK not installed"
+  },
+  "extension_schema": "PASS",
+  "full_dataset_schema": {
+    "status": "PASS",
+    "metadata": 40,
+    "indexes": 40,
+    "snapshots": 91031,
+    "responses": 91031
+  },
+  "protected_source_files": 535,
+  "q2_full_response_and_numeric_regressions": 6,
+  "dataset_audit": {
+    "matches": 40,
+    "snapshots": 91031,
+    "analyzable": 91029,
+    "unsupported_terminal": 2,
+    "pass_candidates": 904995,
+    "identity_errors": 0,
+    "score_errors": 0,
+    "full_tracking_files_present": 0
+  },
+  "browser_checks": {
+    "analysis_tabs": "pass",
+    "player_action_conditions": "pass",
+    "canonical_player_labels": "pass",
+    "model_unavailable_fallback": "pass",
+    "bound_pass_counterfactual": "pass",
+    "replay_to_exact_decision": "pass",
+    "ivory_69_30_score_context": "pass",
+    "responsive_390x844": {
+      "document_width": 390,
+      "viewport_width": 390,
+      "pitch_width": 332,
+      "table_container_width": 332
+    },
+    "late_decision_window": {
+      "decision": "d001709",
+      "rendered_rows": 30,
+      "range": "1699–1728 of 2284"
+    },
+    "match_switch": "pass: switched to PL26-W03-BOU-LIV, BOU #3, final 1–0, blank question/answer; returned to EVE–CRY"
+  },
+  "paid_model_calls": 0,
+  "pushed": false,
+  "azure_deployed": false,
+  "limitations": [
+    "No live Codespaces worktree inspection.",
+    "No paid or production Azure end-to-end call.",
+    "Optional root Agent Framework suite skipped.",
+    "Full tracking unavailable; no full-match animation verification.",
+    "Responsive viewport check is not a physical-device touch test."
+  ],
+  "unchanged_source_files": 534,
+  "declared_non_model_change": {
+    "file": ".github/workflows/ci.yml",
+    "change": "Add npm ci --ignore-scripts for existing frontend test dependencies; all other bytes preserved",
+    "baseline_hash_normalization": "Remove precisely the added install step before comparing the original SHA-256"
+  },
+  "status": "PASS",
+  "data_q2_agent_and_azure_sha256_unchanged": true,
+  "all_baseline_hashes_match_after_declared_ci_normalization": true
+}
