@@ -34,17 +34,23 @@ class DecisionUnificationTests(unittest.TestCase):
     def test_source_data_q2_and_azure_unchanged_with_explicit_versioned_adapter_changes(self):
         hashes=json.loads((ROOT/'docs/reports/protected-source-hashes.json').read_text())
         approved=json.loads((ROOT/'docs/reports/phase123-approved-source-changes.json').read_text())
+        extended=json.loads((ROOT/'docs/reports/video-approved-source-changes.json').read_text())['changes']
+        self.assertEqual(set(extended),{'decision/agents.py','decision_analysis/counterfactual.py','server.py','wsgi.py'})
+        for relative,entry in extended.items():
+            self.assertEqual(entry['before'],approved['changes'].get(relative,{}).get('after',hashes.get(relative)))
+            self.assertEqual(hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(),entry['after'],relative)
         expected_adapters={'decision/agents.py','decision_analysis/counterfactual.py','server.py'}
         self.assertEqual(set(approved['changes']),expected_adapters|{'decision_analysis/counterfactual_summary.py'})
         for relative,entry in approved['changes'].items():
             self.assertEqual(entry['before'],hashes.get(relative),relative)
-            self.assertEqual(hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(),entry['after'],relative)
+            self.assertEqual(hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(),extended.get(relative,entry)['after'],relative)
         for relative,expected in hashes.items():
             content=(ROOT/relative).read_bytes()
             if relative=='../.github/workflows/ci.yml':
                 self.assertEqual(content.count(b'      - name: Install Touchline test dependencies\n'),1)
                 content=content.replace(b'      - name: Install Touchline test dependencies\n        working-directory: touchline\n        run: npm ci --ignore-scripts\n',b'')
             expected=approved['changes'][relative]['after'] if relative in expected_adapters else expected
+            expected=extended.get(relative,{}).get('after',expected)
             self.assertEqual(hashlib.sha256(content).hexdigest(),expected,relative)
 
     def test_six_preexisting_q2_responses_and_numeric_branches_are_unchanged(self):

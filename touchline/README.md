@@ -83,7 +83,7 @@ of all generated matches. `CURRENT_MATCHWEEK` in `club-home.js` sets the clock.
 - **Replay** — smooth 5 Hz tracking for players and the ball, 1× / 4× / 10× speed, timeline scrubbing and ±10 second controls. Red cards remove players; substitutions switch to the incoming player's identity. Space toggles playback; arrow keys jump 10 seconds.
 - **Analysis** — an English post-match report, first- and second-half review, match progression, Player of the Match with evidence and leading performers, plus final match statistics.
 - **Decision Analysis** (Workspace, `?view=decisions`) — decision timeline, filters, player action conditions, ranked Pass / Carry / Shot choices, Opportunity / Main Risk, Counterfactual, Ask AI Coach, Evidence and Agent Trace. Analysis contains reports only. Old `?view=stats&analysis=decisions` links still work.
-- **Video Analysis** — disabled Phase 4 label; video integration and partial observation are not implemented in this change.
+- **Video Analysis** — private local video upload, optional CV preannotations, human revisions, conditional Partial Q2 and visibility sensitivity, Counterfactual and the existing four-role AI coach. Public/Azure intake is disabled; authorized real-football positive validation remains outstanding. See [setup, evidence and limitations](../HANDOFF_VideoAnalysis_PartialQ2_20261027.md).
 - **Real-data validation** — existing independent validation tools remain available.
 - **Lineups** — matchday XI plus substitutes, appearance status, cards and simulated distance.
 - **Squads** — a new league-wide tab with all 20 clubs' 2026/27 rosters. Pick a club, search by player, position or nationality, and browse players grouped by goalkeepers, defenders, midfielders and forwards.
@@ -157,8 +157,8 @@ not success-probability samples. The old public `/api/rollout` and canonical
 
 Public Demo and its dedicated static scorer/build script are removed. `/public-demo`
 and descendants return HTTP 410 through both the local handler and WSGI. Shared
-models and data are retained. Video and partial-observation contexts fail explicitly
-until their later adapters exist; missing defenders are not interpreted as zero.
+models and data are retained. The synthetic API still rejects video/partial contexts. The independent `/api/video-review`
+adapter now handles versioned partial states; missing defenders are not interpreted as zero.
 
 See [Phase 1–3 handoff](../HANDOFF_Phase1-3_20261027.md).
 

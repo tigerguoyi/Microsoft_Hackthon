@@ -1,0 +1,93 @@
+{
+  "source": "Repository-provided UI demo recording; local integration negative control, not a licensed real-football benchmark",
+  "rights": "operator_confirmed",
+  "video_sha256": "096c1d9b10f3b8540fbade4840e624ca9d3fb604b3f9e16d98247d552911e1d6",
+  "real_weights": true,
+  "models": {
+    "player": {
+      "file": "yolo-football-player-detection.pt",
+      "sha256": "69c652bfa9814ef882c439617f04b8fd5749b6b8455aaa3c36110bc2e802aadd"
+    },
+    "ball": {
+      "file": "yolo-football-ball-detection.pt",
+      "sha256": "fb37942448e7de08745e8aab148d0794f680a738ddd55e5f17abe9ab2d6313fb"
+    },
+    "pitch": {
+      "file": "yolo-football-pitch-detection.pt",
+      "sha256": "06623b51f77f51695cde731da146596e6df73c95a5b4776f6afe7094389ed209"
+    }
+  },
+  "versions": {
+    "ultralytics": "8.4.190",
+    "torch": "2.14.1",
+    "opencv-python": "5.0.0.93",
+    "lap": "0.5.13"
+  },
+  "result": {
+    "schema_version": "cv-observations-1",
+    "frames": [
+      {
+        "timestamp_ms": 0,
+        "frame_index": 0,
+        "requested_timestamp_ms": 0,
+        "players": [],
+        "ball_image": null,
+        "ball_confidence": null,
+        "suggested_actor_id": null,
+        "homography_image_to_pitch": null,
+        "coordinate_calibration_status": "unavailable",
+        "human_verification_status": "required",
+        "segment_id": 0
+      },
+      {
+        "timestamp_ms": 500,
+        "frame_index": 15,
+        "requested_timestamp_ms": 500,
+        "players": [],
+        "ball_image": null,
+        "ball_confidence": null,
+        "suggested_actor_id": null,
+        "homography_image_to_pitch": null,
+        "coordinate_calibration_status": "unavailable",
+        "human_verification_status": "required",
+        "segment_id": 0
+      },
+      {
+        "timestamp_ms": 1000,
+        "frame_index": 30,
+        "requested_timestamp_ms": 1000,
+        "players": [],
+        "ball_image": null,
+        "ball_confidence": null,
+        "suggested_actor_id": null,
+        "homography_image_to_pitch": null,
+        "coordinate_calibration_status": "unavailable",
+        "human_verification_status": "required",
+        "segment_id": 0
+      }
+    ],
+    "models": {
+      "player": "yolo-football-player-detection.pt",
+      "ball": "yolo-football-ball-detection.pt",
+      "pitch": "yolo-football-pitch-detection.pt"
+    },
+    "frames_processed": 31,
+    "observations": 0,
+    "scene_cuts": 0,
+    "unavailable_requested_timestamps": [],
+    "wall_seconds": 9.37,
+    "fps": 30.0,
+    "width": 1440,
+    "height": 900,
+    "limitations": [
+      "Automatic preannotations only. ByteTrack IDs are not jersey numbers.",
+      "RGB teams are provisional; calibration, direction, possession and all used players require human verification.",
+      "Fresh homography per frame; a failed fit or cut does not reuse stale pitch coordinates. No Softmax classification."
+    ]
+  },
+  "mapped_player_observations": 0,
+  "automatically_verified_frames": 0,
+  "scorable_frames": 0,
+  "status": "no_mapped_players",
+  "note": "Real CV output requires human confirmation before Q2. Zero observations is a negative result, not successful football understanding."
+}

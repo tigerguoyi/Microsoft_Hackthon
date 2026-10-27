@@ -27,7 +27,7 @@ test('Main document no longer has nested analysis tabs or an active Public Demo/
   const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
   assert.ok(!html.includes('data-analysis-tab'));assert.ok(!html.includes('analysis-subtabs'));
   assert.match(html,/id="nav-decision-analysis" data-view="decisions" href="index.html\?view=decisions"/);
-  assert.ok(!html.includes('public-demo/'));assert.match(html,/disabled aria-label="Video Analysis — planned for Phase 4, unavailable"/);
+  assert.ok(!html.includes('public-demo/'));assert.match(html,/href="video-analysis.html">Video Analysis<\/a>/);
   assert.match(html,/<section id="decision-analysis" hidden aria-label="Decision Analysis">/);
   assert.ok(!html.includes('aria-labelledby="decisions-tab"'));
   assert.match(html,/<nav class="workspace-mobile-links" aria-label="Workspace">/);

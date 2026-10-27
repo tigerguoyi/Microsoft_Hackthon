@@ -10,7 +10,7 @@ build/
 
 # Touchline bulk outputs. Regenerate with touchline/generate.py.
 # Every match's events, states, preview and decision records are tracked, so a
-# clean checkout runs the dashboard, the coach page and the public demo with no
+# clean checkout runs the dashboard, the coach page and decision analysis with no
 # generation step. Full tracking stays ignored: the only tracked tracking.jsonl
 # is the SynthData 25 Hz clip (see touchline/data/samples/README.md), which is
 # what the pitch sample reads.
@@ -34,3 +34,7 @@ coverage/
 
 # Local deployment packages
 .deploy/
+
+# Private video observations, media, inference jobs and optional weights
+touchline/.local/
+/video-validation-output/

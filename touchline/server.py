@@ -11,6 +11,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
+from video_review.service import handle_get as video_get, handle_post as video_post, handle_upload as video_upload
 from decision_analysis.input_adapter import public_profile
 from decision_analysis.service import handle_get as decision_get, handle_post as decision_post
 from decision.outcome import review_record
@@ -190,6 +191,7 @@ class Handler(SimpleHTTPRequestHandler):
                 for p in team.get('players', []) if isinstance(p, dict)]
 
     def do_GET(self):
+        if video_get(self):return
         if decision_get(self):return
         if urlsplit(self.path).path == '/api/model-settings':
             if not self.trusted():
@@ -200,6 +202,7 @@ class Handler(SimpleHTTPRequestHandler):
             super().do_GET()
 
     def do_POST(self):
+        if video_upload(self):return
         if not self.trusted() or self.headers.get('Content-Type') != 'application/json':
             self.reply(403, {'error': 'Only same-origin JSON requests are accepted.'})
             return
@@ -211,6 +214,7 @@ class Handler(SimpleHTTPRequestHandler):
             if not isinstance(data, dict):
                 raise ValueError('Expected a JSON object.')
             route = urlsplit(self.path).path
+            if video_post(self, route, data):return
             if decision_post(self, route, data):return
             if route == '/api/rollout':
                 self.reply(200, simulate(data['frame'], data['metadata'], data['action_id']))

@@ -1,0 +1,5 @@
+// Pure lifecycle helpers: old responses must not survive revision/scope/scenario edits.
+export function createLifecycle(){let generation=0;const controllers=new Set();return{invalidate(){generation++;for(const c of controllers)c.abort();controllers.clear();},start(){const token=generation,controller=new AbortController();controllers.add(controller);return{signal:controller.signal,current:()=>token===generation,done:()=>controllers.delete(controller)};}};}
+export function selectionFor(asset,revision,frame,scope,selected,assumption,shot){if(!asset||!revision)throw Error('Save a verified revision first.');return{video_id:asset.video_id,revision_id:revision.revision_id,frame_index:frame,visibility_scope:scope,selected_player_ids:scope==='custom'?selected:null,assumption_set_id:assumption,include_shot:shot};}
+export function bindingFor(analysis){return{snapshot_id:analysis.snapshot_id,candidate_set_id:analysis.candidate_set_id,analysis_id:analysis.analysis_id};}
+export function formatWeight(value){return value==null?'—':value<.1?'<0.1':value.toFixed(1);}

@@ -6,23 +6,27 @@ The screen does not grade the player.
 
 ## Current local product (2026-10-27)
 
-Workspace **Decision Analysis** is independent from the post-match **Analysis** report.
-Open `touchline/index.html?match=PL26-W03-EVE-CRY&view=decisions` for Q2,
-player action conditions, Counterfactual and the four-role AI coach. Old
-`view=stats&analysis=decisions` links are normalized to this route. Agent
-`simulate_action` now uses the same Pass / Carry / Shot engine as Counterfactual Lab,
-with actual tool receipts checked by Reviewer. Public Demo is retired (HTTP 410).
-Video Analysis is a disabled Phase 4 navigation label, not an implemented feature.
+Workspace now has independent **Decision Analysis**, **Video Analysis** and
+**Real-data validation**. Synthetic Match keeps its unchanged full Q2/models/data.
+Private local Video Analysis supports upload, optional YOLO/ByteTrack preannotations,
+human revision, partial observation candidates, conditional two-step Q2, visible-defense
+sensitivity, shared-motion counterfactuals and the existing four-role Responses coach.
+Public/Azure video intake is disabled pending production isolation. No push/deployment.
 
-See [the current Chinese Phase 1–3 handoff](HANDOFF_Phase1-3_20261027.md)
-and [the file-level compatibility audit](docs/PHASE1_3_COMPATIBILITY_20261027.md).
-The earlier [unification report](HANDOFF_决策分析统一与数据一致性_20261027.md)
-is historical. This change is local only, with no push or deployment. Full tracking
-files are absent in this checkout; preview animation and full-match decision snapshots
-remain available. Original matches, Q2 mathematics, learned artifacts and Azure startup
-configuration are preserved. Legacy Coach/Action Review APIs remain compatible.
-The product Q2 engine in `touchline/decision_analysis` is separate from the
-root `inside_the_game` classification kernel documented later in this README.
+Read [the current Chinese handoff and limits](HANDOFF_VideoAnalysis_PartialQ2_20261027.md)
+and [video API/schema integration](touchline/contracts/VIDEO_ANALYSIS.md).
+Real weights were exercised on the supplied UI demo recording and found no mapped
+players: **this is a negative control, not successful real-football recognition**.
+Authorized real-match positive validation remains outstanding. Manual and API workflows
+were tested with explicitly generated fixtures; no paid model calls were made.
+
+Start the ordinary demo with `cd touchline && python3 server.py`; open
+`/index.html?view=decisions` or `/video-analysis.html`. Video decoding/CV dependencies
+are optional; use the handoff's setup steps for `.[demo]` and local model weights.
+No full tracking is checked in; preview animation and full-match decision snapshots
+remain available. The historical [Phase 1–3 report](HANDOFF_Phase1-3_20261027.md)
+is preserved. Root `inside_the_game` classification research remains separate from
+product Q2 and is never the Video Analysis ranking model.
 
 ## Judge path
 

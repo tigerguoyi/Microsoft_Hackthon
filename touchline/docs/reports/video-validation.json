@@ -1,0 +1,99 @@
+{
+  "status": "implemented_with_validation_limitations",
+  "date": "2026-10-27",
+  "base_commit": "389fb1f3736febaaa53d77477a098d3177aa57bf",
+  "branch": "codex/unified-decision-analysis",
+  "tests": {
+    "touchline_python": {
+      "passed": 157,
+      "failed": 0,
+      "duration_seconds": 30.831
+    },
+    "touchline_node": {
+      "passed": 41,
+      "failed": 0
+    },
+    "root_pytest": {
+      "passed": 98,
+      "skipped": 1,
+      "reason": "Optional agent-framework-core absent"
+    },
+    "new_video_tests": 32,
+    "video_schemas": "pass",
+    "synthetic_extension_schemas": "pass",
+    "preexisting_q2_responses_unchanged": 6,
+    "complete_counterfactual_digests_unchanged": 6,
+    "protected_source_files_checked": 535
+  },
+  "browser": {
+    "upload_real_decode": true,
+    "browser_h264_playback": true,
+    "manual_revision": true,
+    "dynamic_candidates": 7,
+    "observed_attackers": 5,
+    "visible_defenders": 0,
+    "unknown_defenders": "unknown",
+    "scenario_top_choice_changes": true,
+    "counterfactual_recomputed_for_scenario": true,
+    "old_geometry_cleared_on_selection_change": true,
+    "model_unavailable_preserves_ranking": true,
+    "real_worker_job_completed": true,
+    "verified_annotations_preserved": true,
+    "desktop_viewport": [
+      1280,
+      900
+    ],
+    "mobile_viewport": [
+      390,
+      844
+    ],
+    "horizontal_overflow": false,
+    "test_footage": "Self-created explicitly labelled synthetic UI fixture; not real-football validation"
+  },
+  "real_cv": {
+    "status": "no_mapped_players",
+    "mapped_player_observations": 0,
+    "scorable_frames": 0,
+    "wall_seconds": 9.37,
+    "real_model_weights": true,
+    "positive_real_football_validation": "pending authorized football footage",
+    "metrics_not_evaluable": [
+      "detection accuracy",
+      "identity switches on actual players",
+      "real calibration accuracy",
+      "real decision validity"
+    ]
+  },
+  "guarantees": {
+    "original_matches_regenerated": 0,
+    "full_q2_math_changed": false,
+    "xT_or_trained_weights_changed": false,
+    "old_softmax_classifier_used_for_video_ranking": false,
+    "paid_model_calls": 0,
+    "push": false,
+    "merge": false,
+    "azure_deployment": false,
+    "public_video_upload_enabled": false,
+    "video_agent_probability_claims_withheld": true
+  },
+  "limits": {
+    "upload_bytes": 67108864,
+    "duration_s": 120,
+    "width": 3840,
+    "height": 2160,
+    "private_storage_mib": 512,
+    "concurrent_cv_processes": 1,
+    "cv_processing_timeout_s": 240,
+    "cv_hard_alarm_s": 290,
+    "cv_supervisor_timeout_s": 300,
+    "retention_policy_days": 7,
+    "retention_execution": "operator maintenance command; no automatic cron installed"
+  },
+  "limitations": [
+    "Real models executed successfully on existing UI recording but detected no mapped players; not a positive football benchmark.",
+    "Video utilities/probabilities and geometric defensive assumptions are uncalibrated.",
+    "Unknown velocity is neutral only inside predicted states; observation retains null.",
+    "Public/Azure video remains disabled until independent identity/private storage/worker readiness.",
+    "Language transport mocked for orchestration tests; no paid/live provider semantic evaluation."
+  ]
+}

@@ -23,6 +23,7 @@ demo = [
     "opencv-python-headless>=4.8",
     "ultralytics>=8.3",
     "torch>=2.2",
+    "lap>=0.5.12",  # ByteTrack matching; no runtime package download in requests.
 ]
 
 [project.scripts]

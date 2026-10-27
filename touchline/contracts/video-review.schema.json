@@ -1,0 +1,1326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextplay.local/contracts/video-review-2.schema.json",
+  "title": "Independent private video, partial observation, conditional Q2 and sensitivity contract",
+  "$defs": {
+    "player": {
+      "type": "object",
+      "properties": {
+        "player_id": {
+          "type": "string",
+          "pattern": "^T[0-9]{2,6}$"
+        },
+        "track_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "team_id": {
+          "enum": [
+            "HOME",
+            "AWAY",
+            null
+          ]
+        },
+        "image": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "position": {
+          "enum": [
+            "GK",
+            "OUTFIELD",
+            null
+          ]
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "jersey_number": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 99
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "velocity": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "human_verified": {
+          "type": "boolean"
+        },
+        "identity_status": {
+          "enum": [
+            "temporary",
+            "confirmed"
+          ]
+        },
+        "observation_status": {
+          "enum": [
+            "visible",
+            "occluded",
+            "undetected",
+            "outside_view"
+          ]
+        }
+      },
+      "required": [
+        "player_id",
+        "track_id",
+        "team_id",
+        "image",
+        "position",
+        "name",
+        "jersey_number",
+        "velocity",
+        "confidence",
+        "human_verified",
+        "identity_status",
+        "observation_status"
+      ],
+      "additionalProperties": false
+    },
+    "observed_player": {
+      "type": "object",
+      "properties": {
+        "player_id": {
+          "type": "string",
+          "pattern": "^T[0-9]{2,6}$"
+        },
+        "track_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "team_id": {
+          "enum": [
+            "HOME",
+            "AWAY",
+            null
+          ]
+        },
+        "image": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "position": {
+          "enum": [
+            "GK",
+            "OUTFIELD",
+            null
+          ]
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "jersey_number": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 99
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "velocity": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "human_verified": {
+          "type": "boolean"
+        },
+        "identity_status": {
+          "enum": [
+            "temporary",
+            "confirmed"
+          ]
+        },
+        "observation_status": {
+          "enum": [
+            "visible",
+            "occluded",
+            "undetected",
+            "outside_view"
+          ]
+        },
+        "pitch": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position_confidence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "is_ball_carrier": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "player_id",
+        "track_id",
+        "team_id",
+        "image",
+        "position",
+        "name",
+        "jersey_number",
+        "velocity",
+        "confidence",
+        "human_verified",
+        "identity_status",
+        "observation_status",
+        "pitch",
+        "position_confidence",
+        "is_ball_carrier"
+      ],
+      "additionalProperties": false
+    },
+    "frame": {
+      "type": "object",
+      "properties": {
+        "timestamp_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 119999
+        },
+        "actor_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "possession_team": {
+          "enum": [
+            "HOME",
+            "AWAY",
+            null
+          ]
+        },
+        "attack_direction": {
+          "enum": [
+            "positive_x",
+            "negative_x",
+            null
+          ]
+        },
+        "ball_image": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "players": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/player"
+          },
+          "maxItems": 22
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "image": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "pitch": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            },
+            "required": [
+              "image",
+              "pitch"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 16
+        },
+        "confirmed": {
+          "type": "object",
+          "properties": {
+            "calibration": {
+              "type": "boolean"
+            },
+            "direction": {
+              "type": "boolean"
+            },
+            "possession": {
+              "type": "boolean"
+            },
+            "ground_ball": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "calibration",
+            "direction",
+            "possession",
+            "ground_ball"
+          ],
+          "additionalProperties": false
+        },
+        "unknown_opponent_count": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 11
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "coverage_complete": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "timestamp_ms",
+        "actor_id",
+        "possession_team",
+        "attack_direction",
+        "ball_image",
+        "players",
+        "landmarks",
+        "confirmed",
+        "unknown_opponent_count",
+        "coverage_complete"
+      ],
+      "additionalProperties": false
+    },
+    "selection": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "revision_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "frame_index": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 59
+        },
+        "visibility_scope": {
+          "enum": [
+            "verified",
+            "confirmed_only",
+            "custom"
+          ]
+        },
+        "selected_player_ids": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "assumption_set_id": {
+          "enum": [
+            "observed_only",
+            "low_pressure_v1",
+            "moderate_pressure_v1",
+            "high_pressure_v1",
+            "full"
+          ]
+        },
+        "include_shot": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "video_id",
+        "revision_id",
+        "frame_index",
+        "visibility_scope",
+        "selected_player_ids",
+        "assumption_set_id",
+        "include_shot"
+      ],
+      "additionalProperties": false
+    },
+    "unknown_state": {
+      "type": "object",
+      "properties": {
+        "unknown_defender_count": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 11
+            },
+            {
+              "const": "unknown"
+            }
+          ]
+        },
+        "goalkeeper": {
+          "enum": [
+            "observed",
+            "unknown"
+          ]
+        },
+        "offside_line": {
+          "enum": [
+            "known",
+            "unknown"
+          ]
+        },
+        "excluded_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "excluded_observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "player_id": {
+                "type": "string"
+              },
+              "observation_status": {
+                "type": "string"
+              },
+              "user_excluded": {
+                "type": "boolean"
+              },
+              "human_verified": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "player_id",
+              "observation_status",
+              "user_excluded",
+              "human_verified"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "unknown_defender_count",
+        "goalkeeper",
+        "offside_line",
+        "excluded_ids",
+        "excluded_observations"
+      ],
+      "additionalProperties": false
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "ready": {
+          "type": "boolean"
+        },
+        "blocking_reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "calibration_status": {
+          "type": "string"
+        },
+        "human_verification": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ready",
+        "blocking_reasons",
+        "calibration_status",
+        "human_verification"
+      ],
+      "additionalProperties": false
+    },
+    "snapshot": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "partial-snapshot-1"
+        },
+        "source": {
+          "const": "real_video"
+        },
+        "video_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "revision_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "frame_index": {
+          "type": "integer"
+        },
+        "timestamp_ms": {
+          "type": "integer"
+        },
+        "possession_team": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ball_carrier_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "attack_direction": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ball_position": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observed_players": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/observed_player"
+          }
+        },
+        "observed_teammates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/observed_player"
+          }
+        },
+        "observed_opponents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/observed_player"
+          }
+        },
+        "visibility_scope_id": {
+          "type": "string"
+        },
+        "observation_mode": {
+          "enum": [
+            "full_observation",
+            "partial_observation"
+          ]
+        },
+        "unknown_state": {
+          "$ref": "#/$defs/unknown_state"
+        },
+        "observation_quality": {
+          "$ref": "#/$defs/quality"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "snapshot_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "source",
+        "video_id",
+        "revision_id",
+        "frame_index",
+        "timestamp_ms",
+        "possession_team",
+        "ball_carrier_id",
+        "attack_direction",
+        "ball_position",
+        "observed_players",
+        "observed_teammates",
+        "observed_opponents",
+        "visibility_scope_id",
+        "observation_mode",
+        "unknown_state",
+        "observation_quality",
+        "limitations",
+        "snapshot_id"
+      ],
+      "additionalProperties": false
+    },
+    "ranked_action": {
+      "type": "object",
+      "properties": {
+        "action_id": {
+          "type": "string"
+        },
+        "action_type": {
+          "enum": [
+            "pass",
+            "carry",
+            "shot"
+          ]
+        },
+        "rank": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "q": {
+          "type": "number"
+        },
+        "relative_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "softmax_weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "target": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "supported": {
+          "const": true
+        },
+        "features": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "probabilities": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "evidence_id": {
+          "type": "string"
+        },
+        "opportunity": {
+          "type": "string"
+        },
+        "main_risk": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "action_id",
+        "action_type",
+        "rank",
+        "q",
+        "relative_score",
+        "softmax_weight",
+        "target",
+        "supported",
+        "features",
+        "probabilities",
+        "evidence_id",
+        "opportunity",
+        "main_risk"
+      ],
+      "additionalProperties": true
+    },
+    "analysis_response": {
+      "type": "object",
+      "properties": {
+        "snapshot_id": {
+          "type": "string"
+        },
+        "video_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "revision_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "frame_index": {
+          "type": "integer"
+        },
+        "visibility_scope_id": {
+          "type": "string"
+        },
+        "observation_mode": {
+          "enum": [
+            "full_observation",
+            "partial_observation"
+          ]
+        },
+        "assumption_set_id": {
+          "type": "string"
+        },
+        "scenario_model_version": {
+          "type": "string"
+        },
+        "q2_model_version": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "needs_confirmation",
+            "candidate_discovery",
+            "conditional_ranking",
+            "full_q2"
+          ]
+        },
+        "level": {
+          "enum": [
+            1,
+            2,
+            3
+          ]
+        },
+        "candidate_set_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "analysis_id": {
+          "type": "string"
+        },
+        "snapshot": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "observation_quality": {
+          "$ref": "#/$defs/quality"
+        },
+        "observed_counts": {
+          "type": "object",
+          "properties": {
+            "attacking_players": {
+              "type": "integer"
+            },
+            "available_teammates": {
+              "type": "integer"
+            },
+            "visible_defenders": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "attacking_players",
+            "available_teammates",
+            "visible_defenders"
+          ],
+          "additionalProperties": false
+        },
+        "missing_information": {
+          "$ref": "#/$defs/unknown_state"
+        },
+        "candidate_actions": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "ranking": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ranked_action"
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "snapshot_id",
+        "video_id",
+        "revision_id",
+        "frame_index",
+        "visibility_scope_id",
+        "observation_mode",
+        "assumption_set_id",
+        "scenario_model_version",
+        "q2_model_version",
+        "status",
+        "level",
+        "candidate_set_id",
+        "analysis_id",
+        "snapshot",
+        "observation_quality",
+        "observed_counts",
+        "missing_information",
+        "candidate_actions",
+        "ranking",
+        "limitations"
+      ],
+      "additionalProperties": true
+    },
+    "annotation": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "parent_revision_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{32}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rights_confirmed": {
+          "const": true
+        },
+        "frames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/frame"
+          },
+          "minItems": 1,
+          "maxItems": 60
+        }
+      },
+      "required": [
+        "video_id",
+        "parent_revision_id",
+        "rights_confirmed",
+        "frames"
+      ],
+      "additionalProperties": false
+    },
+    "counterfactual_request": {
+      "type": "object",
+      "properties": {
+        "selection": {
+          "$ref": "#/$defs/selection"
+        },
+        "snapshot_id": {
+          "type": "string"
+        },
+        "candidate_set_id": {
+          "type": "string"
+        },
+        "analysis_id": {
+          "type": "string"
+        },
+        "action_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "selection",
+        "snapshot_id",
+        "candidate_set_id",
+        "analysis_id",
+        "action_id"
+      ],
+      "additionalProperties": false
+    },
+    "counterfactual_response": {
+      "type": "object",
+      "properties": {
+        "snapshot_id": {
+          "type": "string"
+        },
+        "video_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "revision_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "frame_index": {
+          "type": "integer"
+        },
+        "visibility_scope_id": {
+          "type": "string"
+        },
+        "observation_mode": {
+          "enum": [
+            "full_observation",
+            "partial_observation"
+          ]
+        },
+        "assumption_set_id": {
+          "type": "string"
+        },
+        "scenario_model_version": {
+          "type": "string"
+        },
+        "q2_model_version": {
+          "type": "string"
+        },
+        "candidate_set_id": {
+          "type": "string"
+        },
+        "analysis_id": {
+          "type": "string"
+        },
+        "action_id": {
+          "type": "string"
+        },
+        "action_type": {
+          "type": "string"
+        },
+        "evidence_id": {
+          "type": "string"
+        },
+        "source_type": {
+          "const": "counterfactual_hypothesis"
+        },
+        "unknown_defender_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "const": "unknown"
+            }
+          ]
+        },
+        "hypothetical_defender_count": {
+          "type": "integer"
+        },
+        "hypothetical_player_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scenarios": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "not_observed_future": {
+          "const": true
+        },
+        "ranking_unchanged": {
+          "const": true
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "snapshot_id",
+        "video_id",
+        "revision_id",
+        "frame_index",
+        "visibility_scope_id",
+        "observation_mode",
+        "assumption_set_id",
+        "scenario_model_version",
+        "q2_model_version",
+        "candidate_set_id",
+        "analysis_id",
+        "action_id",
+        "action_type",
+        "evidence_id",
+        "source_type",
+        "unknown_defender_count",
+        "hypothetical_defender_count",
+        "hypothetical_player_ids",
+        "scenarios",
+        "not_observed_future",
+        "ranking_unchanged",
+        "limitations"
+      ],
+      "additionalProperties": true
+    },
+    "sensitivity_response": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "visibility-sensitivity-1"
+        },
+        "video_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "revision_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "snapshot_id": {
+          "type": "string"
+        },
+        "frame_index": {
+          "type": "integer"
+        },
+        "visibility_scope_id": {
+          "type": "string"
+        },
+        "candidate_set_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scenario_model_version": {
+          "type": "string"
+        },
+        "q2_model_version": {
+          "type": "string"
+        },
+        "scenarios": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/analysis_response"
+          }
+        },
+        "rank_ranges": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "top_choice_stability": {
+          "type": "object"
+        },
+        "pairwise_ordering": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "ordering_changes": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "rules": {
+          "type": "object"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "limitation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "video_id",
+        "revision_id",
+        "snapshot_id",
+        "frame_index",
+        "visibility_scope_id",
+        "candidate_set_id",
+        "scenario_model_version",
+        "q2_model_version",
+        "scenarios",
+        "rank_ranges",
+        "top_choice_stability",
+        "pairwise_ordering",
+        "ordering_changes",
+        "rules",
+        "limitations",
+        "limitation"
+      ],
+      "additionalProperties": false
+    },
+    "agents_request": {
+      "type": "object",
+      "properties": {
+        "selection": {
+          "$ref": "#/$defs/selection"
+        },
+        "snapshot_id": {
+          "type": "string"
+        },
+        "candidate_set_id": {
+          "type": "string"
+        },
+        "analysis_id": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "mode": {
+          "enum": [
+            "fan",
+            "analyst"
+          ]
+        },
+        "language": {
+          "enum": [
+            "en",
+            "zh"
+          ]
+        }
+      },
+      "required": [
+        "selection",
+        "snapshot_id",
+        "candidate_set_id",
+        "analysis_id",
+        "question",
+        "mode",
+        "language"
+      ],
+      "additionalProperties": false
+    },
+    "agents_response": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "answer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "candidate_set_id": {
+          "type": "string"
+        },
+        "context": {
+          "type": "object"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "answer",
+        "trace",
+        "candidate_set_id",
+        "context",
+        "limitations"
+      ],
+      "additionalProperties": true
+    },
+    "job_response": {
+      "type": "object",
+      "properties": {
+        "job_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "video_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "status": {
+          "enum": [
+            "queued",
+            "running",
+            "complete",
+            "failed"
+          ]
+        },
+        "progress": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "job_id",
+        "video_id",
+        "status",
+        "progress"
+      ],
+      "additionalProperties": true
+    }
+  }
+}

@@ -282,5 +282,6 @@ Canonical `rollout_supported` and `/rollout` remain the legacy ground-pass bridg
 the internal `counterfactual_supported` flag additionally supports carry and shot.
 
 Video IDs, revisions, partial observation modes, custom visibility and defensive
-assumptions are rejected in this phase. The future adapter must validate and retain
-those identities; this change does not implement Partial Q2 or invent unknown counts.
+assumptions remain rejected by the synthetic API. The new independent private video
+adapter validates those identities; see [Video/Partial API contract](../VIDEO_ANALYSIS.md).
+Do not send partial data through the full synthetic endpoint. Unknown counts are explicit.

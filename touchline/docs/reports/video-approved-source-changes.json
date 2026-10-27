@@ -1,0 +1,22 @@
+{
+  "base_commit": "389fb1f3736febaaa53d77477a098d3177aa57bf",
+  "changes": {
+    "decision/agents.py": {
+      "before": "30346052ba6caa370551ccf05ea2e5bdf2b16baeb1b683f2922904f105b44208",
+      "after": "eebc18147bb8bc36e008f824dae3411e04199319a64df656d60e446b157b1d91"
+    },
+    "decision_analysis/counterfactual.py": {
+      "before": "12aab87fb221b854116c5315d75145e7fb8eb91cb407abc7d285e7e9425570a9",
+      "after": "210efdff5e3de82850ca2396d622418156b50ad24f0c8bfa18874a651eef024f"
+    },
+    "server.py": {
+      "before": "d2e44b0e9f066c88023f96042723f1979163a5cc30a15870318c63423ee0d431",
+      "after": "e4011c111015ef4d1831b65ab303b8483b72adece526ad4931dcc627733261cd"
+    },
+    "wsgi.py": {
+      "before": "6fb357c647b26acfed941890622b7553ba0c6f50555c45a9237466d8084f0af3",
+      "after": "6cdecab7acf162e689336d6608f1aa9ce62ae49598e2277d6aa7d19938f15866"
+    }
+  },
+  "note": "Versioned evidence adapter, shared unchanged motion loop, private video HTTP routes and bounded WSGI body. Original protected Q2/data/xT/model/parameters baseline retained."
+}

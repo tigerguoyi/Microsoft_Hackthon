@@ -9,9 +9,10 @@ triple. No route is defined twice.
 import email.message
 import io
 import json
+import os
 import types
 
-from server import ROOT, Handler
+from server import ROOT, Handler, MAX_REQUEST_BYTES
 
 
 class _BufferedWriter:
@@ -84,6 +85,13 @@ def application(environ, start_response):
         length = int(environ.get('CONTENT_LENGTH') or 0)
     except ValueError:
         length = 0
+    # Bound the body before WSGI buffers it; Azure/public video intake stays off.
+    local_video = path == '/api/video-review/upload' and environ.get('HTTP_HOST','').split(':')[0] in ('127.0.0.1','localhost') and not os.getenv('WEBSITE_INSTANCE_ID') and not os.getenv('WEBSITE_HOSTNAME')
+    maximum = 64*1024*1024 if local_video else MAX_REQUEST_BYTES
+    if length < 0 or length > maximum:
+        payload = b'{"error":"Request body too large"}'
+        start_response('413 Payload Too Large',[('Content-Type','application/json'),('Content-Length',str(len(payload)))])
+        return [payload]
     body = environ['wsgi.input'].read(length) if length else b''
     writer = _BufferedWriter()
     handler = _RequestHandler(method, target, _headers_from(environ), body, writer)
