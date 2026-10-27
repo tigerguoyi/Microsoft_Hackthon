@@ -44,7 +44,7 @@ class FictionalDataTests(unittest.TestCase):
         for player in build_metadata(sim)['players']:
             self.assertRegex(player['name'], r'^[A-Z][a-z]+ Player \d{2}$')
 
-    def test_match_reports_and_demo_share_roster_names(self):
+    def test_match_reports_share_roster_names(self):
         squads = load_squads()
         def check(meta):
             clubs = {t['team_id']: t['club_id'] for t in meta['teams']}
@@ -62,5 +62,3 @@ class FictionalDataTests(unittest.TestCase):
             names = {p['player_id']: p['name'] for p in meta['players']}
             for player in report['ranking']:
                 self.assertEqual(player['name'], names[player['player_id']])
-        for match in json.loads((ROOT / 'public-demo/data.json').read_text())['matches']:
-            check(match['metadata'])

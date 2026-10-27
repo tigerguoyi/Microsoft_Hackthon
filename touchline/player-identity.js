@@ -56,7 +56,7 @@ export function describeAction(candidate, metadata) {
 }
 
 export function decisionURL(matchId, decisionId, actionId) {
-  const query = new URLSearchParams({view:'stats',analysis:'decisions',match:matchId});
+  const query = new URLSearchParams({view:'decisions',match:matchId});
   if (decisionId) query.set('decision',decisionId);
   if (actionId) query.set('action',actionId);
   return `index.html?${query}`;

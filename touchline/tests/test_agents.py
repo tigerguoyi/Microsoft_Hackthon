@@ -58,6 +58,10 @@ def scripted_transport(action, fail=None, invalid_ref=False):
                      'caveats': ['Heuristic model; no real probability claim.']}
             if role == 'reviewer':
                 value['verdict'] = 'accept'
+                checked=json.loads(outputs[-1]['output'])
+                receipts=checked.get('counterfactual_tool_receipts',[])
+                if receipts and not invalid_ref:
+                    value['evidence_ids'].append(receipts[0]['evidence_id'])
             return {'status': 'completed', 'output': [{'type': 'message', 'content': [
                 {'type': 'output_text', 'text': json.dumps(value)}]}]}
         return {'status': 'completed', 'output': [{'type': 'function_call', 'call_id': role + str(len(outputs)),
@@ -103,7 +107,7 @@ class AgentsTests(unittest.TestCase):
         reviewer_request = next(p for p in requests if p['instructions'].endswith(ROLES['reviewer']))
         self.assertIn('defense', reviewer_request['input'][0]['content'])
         self.assertNotIn('secret-test-key', json.dumps(r))
-        self.assertIn(self.action + ':rollout', r['evidence'])
+        self.assertTrue(any(isinstance(e,dict) and e.get('action_id')==self.action and e.get('source_type')=='counterfactual_hypothesis' for e in r['evidence'].values()))
 
     def test_future_frame_fields_never_reach_the_provider(self):
         document = copy.deepcopy(self.document)

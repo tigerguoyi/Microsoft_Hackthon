@@ -1,9 +1,9 @@
-import {validateDecisionDocument} from './player-identity.js';
-import {renderPitch} from './pitch-renderer.js?v=unified-1';
-import {api,esc,actionLabel,conditionsMarkup} from './decision-analysis-view.js?v=unified-1';
+import {validateDecisionDocument,decisionURL} from './player-identity.js';
+import {renderPitch} from './pitch-renderer.js?v=phase123-1';
+import {api,esc,actionLabel,conditionsMarkup} from './decision-analysis-view.js?v=phase123-1';
 const $=s=>document.querySelector(s),params=new URLSearchParams(location.search),match=params.get('match'),decision=params.get('decision');
 let context,doc,result=null,animation=null,token=0,controller=new AbortController();
-const back=new URL('/',location.href);back.search=new URLSearchParams({view:'stats',analysis:'decisions',match:match||'',decision:decision||''});$('#cf-back').href=back.pathname+back.search;
+const back=new URL(decisionURL(match||'',decision||''),location.href);$('#cf-back').href=back.pathname+back.search;
 function stop(){if(animation!==null)cancelAnimationFrame(animation);animation=null;$('#cf-play').textContent='Play hypothesis';}
 function choice(){return doc?.candidates.find(c=>c.action_id===$('#cf-action').value);}
 function paint(frame=null){if(!doc||!context)return;const c=choice();renderPitch($('#cf-pitch'),frame?{...doc.snapshot.frame,...frame}:doc.snapshot.frame,{metadata:context.metadata,selected:context.request.actor_id,route:c?{start:doc.snapshot.frame.ball,target:c.target,recipient_id:c.type==='pass'?c.recipient_id:null}:null});}

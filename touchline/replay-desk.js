@@ -1,5 +1,5 @@
 import {formatClock} from './core.js?v=2.2.0';
-import {api,esc} from './decision-analysis-view.js?v=unified-1';
+import {api,esc} from './decision-analysis-view.js?v=phase123-1';
 import {playerLabel,describeAction,decisionURL,validateDecisionDocument} from './player-identity.js';
 
 // Replay keeps a brief hint. Full comparisons and all Agent calls live in Analysis.
@@ -49,7 +49,7 @@ export function createReplayDesk(getState,openDecision) {
     status.textContent='Open Decision Analysis to compare every choice, explore a counterfactual or ask the AI coach.';
   }
   function clearHint(message){entry=null;analysis.replaceChildren();measures.replaceChildren();narration.textContent='';clock.textContent='—';status.textContent=message;
-    link.href=matchId?decisionURL(matchId):'index.html?view=stats&analysis=decisions';}
+    link.href=matchId?decisionURL(matchId):'index.html?view=decisions';}
   function clear(){epoch++;controller.abort();controller=new AbortController();matchId='';index=null;pending=null;cache.clear();clearHint('Select a match.');follow.textContent='Waiting for a match';}
   link.onclick=event=>{event.preventDefault();if(matchId)openDecision?.(entry?.row.decision_id);};
   async function read(row){

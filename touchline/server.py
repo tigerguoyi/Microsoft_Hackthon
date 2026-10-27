@@ -146,6 +146,9 @@ class Handler(SimpleHTTPRequestHandler):
         if relative is None or any(p.startswith('.') for p in relative.parts):
             self.send_error(404)
             return None
+        if relative.parts[:1] == ('public-demo',):
+            self.send_error(410, 'Public Demo retired; open /index.html?view=decisions')
+            return None
         if path.is_dir() and path != ROOT:
             self.send_error(404)
             return None

@@ -1,0 +1,91 @@
+{
+  "status": "pass",
+  "scope": "Phase 1–3 only; Phase 0 compatibility audit included",
+  "base_commit": "27fdfeee5910cc7edcc33b6411b079b4e3a91185",
+  "branch": "codex/unified-decision-analysis",
+  "tests": {
+    "stage_a_new_counterfactual": 8,
+    "stage_a_existing_agents": 8,
+    "stage_b_retired_routes": 5,
+    "stage_c_routes_and_ui_lifecycle": 13,
+    "touchline_node": {
+      "passed": 37,
+      "failed": 0
+    },
+    "touchline_python": {
+      "passed": 125,
+      "failed": 0,
+      "duration_s": 29.588
+    },
+    "root_pytest": {
+      "passed": 98,
+      "skipped": 1,
+      "failed": 0,
+      "duration_s": 2.43,
+      "skip_reason": "Optional agent-framework-core SDK is absent; tests/test_agent_workflow.py. Product four-role Responses transport tested separately."
+    }
+  },
+  "validation": {
+    "extension_schemas": "pass",
+    "cached_analysis_dataset": {
+      "matches": 40,
+      "indexes": 40,
+      "snapshots": 91031,
+      "responses": 91031
+    },
+    "source_schema": {
+      "matches": 40,
+      "previews": 40,
+      "events": 150466,
+      "states": 240040,
+      "decision_snapshots": 91031
+    },
+    "legacy_sample_schema": "pass",
+    "preexisting_q2_response_baselines": 6,
+    "prechange_complete_counterfactual_digests": 6,
+    "identity_candidates_audited": 904995,
+    "terminal_snapshots_unsupported": 2,
+    "protected_math_data_azure": "pass",
+    "git_diff_check": "pass"
+  },
+  "browser": {
+    "base_url": "http://127.0.0.1:53483",
+    "legacy_link_normalizes": true,
+    "report_only_analysis": true,
+    "independent_decisions": true,
+    "counterfactual_computed_and_return_binding": true,
+    "mobile_viewport": [
+      390,
+      844
+    ],
+    "mobile_horizontal_overflow": false,
+    "mobile_workspace_navigation": true,
+    "model_unavailable_keeps_q2": true,
+    "team_filter_and_match_switch": true
+  },
+  "constraints": {
+    "model_network_calls": 0,
+    "regenerated_matches": 0,
+    "new_cv_or_partial_features": false,
+    "push": false,
+    "merge": false,
+    "azure_deployment": false
+  },
+  "limitations": [
+    "Language transport mocked for four-role integration; no paid live model invocation.",
+    "No real CV integration test in scope; Video/Partial Observation start at Phase 4.",
+    "Full tracking files absent; replay uses previews, separate full-match decision snapshots remain available.",
+    "Four deterministic Counterfactual scenarios are hypotheses, not calibrated probabilities."
+  ],
+  "reproduction": {
+    "note": "Current shell lacks npm; package.json test commands executed directly with installed Node and Python 3.12. Tests used temporary environment outside repository.",
+    "commands": [
+      "node --test tests/*.test.js",
+      "python3 -m unittest discover -s tests -p 'test_*.py'",
+      "python3 -m pytest -q -rs -o cache_dir=/tmp/phase123-pytest-cache",
+      "node scripts/validate_contracts.mjs --dataset data data/league",
+      "node scripts/validate_decision_analysis.mjs",
+      "node scripts/validate_decision_dataset.mjs"
+    ]
+  }
+}

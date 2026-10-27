@@ -1,4 +1,4 @@
-"""Full-league consistency and immutable numerical/Agent/deployment regression."""
+"""Full-league consistency and immutable numerical/deployment and versioned adapter regression."""
 import hashlib
 import json
 from pathlib import Path
@@ -31,13 +31,20 @@ class DecisionUnificationTests(unittest.TestCase):
         self.assertEqual(match['regression']['players'][0]['jersey_number'],11)
         self.assertEqual(match['regression']['players'][1]['jersey_number'],10)
 
-    def test_source_data_q2_agent_and_azure_unchanged_and_ci_only_installs_test_dependencies(self):
+    def test_source_data_q2_and_azure_unchanged_with_explicit_versioned_adapter_changes(self):
         hashes=json.loads((ROOT/'docs/reports/protected-source-hashes.json').read_text())
+        approved=json.loads((ROOT/'docs/reports/phase123-approved-source-changes.json').read_text())
+        expected_adapters={'decision/agents.py','decision_analysis/counterfactual.py','server.py'}
+        self.assertEqual(set(approved['changes']),expected_adapters|{'decision_analysis/counterfactual_summary.py'})
+        for relative,entry in approved['changes'].items():
+            self.assertEqual(entry['before'],hashes.get(relative),relative)
+            self.assertEqual(hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(),entry['after'],relative)
         for relative,expected in hashes.items():
             content=(ROOT/relative).read_bytes()
             if relative=='../.github/workflows/ci.yml':
                 self.assertEqual(content.count(b'      - name: Install Touchline test dependencies\n'),1)
                 content=content.replace(b'      - name: Install Touchline test dependencies\n        working-directory: touchline\n        run: npm ci --ignore-scripts\n',b'')
+            expected=approved['changes'][relative]['after'] if relative in expected_adapters else expected
             self.assertEqual(hashlib.sha256(content).hexdigest(),expected,relative)
 
     def test_six_preexisting_q2_responses_and_numeric_branches_are_unchanged(self):

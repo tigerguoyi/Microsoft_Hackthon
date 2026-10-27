@@ -1,0 +1,22 @@
+{
+  "base_commit": "27fdfeee5910cc7edcc33b6411b079b4e3a91185",
+  "reason": "Explicit Phase 1 adapter validation/tool integration and Phase 2 retired static route; protected mathematics/data/Azure baseline is not rewritten.",
+  "changes": {
+    "decision/agents.py": {
+      "before": "2cd6dcb952b4474c561161a35de9f98537301e3a75b9a5a7961aa5f3fe5d8061",
+      "after": "30346052ba6caa370551ccf05ea2e5bdf2b16baeb1b683f2922904f105b44208"
+    },
+    "decision_analysis/counterfactual.py": {
+      "before": "7ab66de860c83191773f50e2c377a29264cf6367fe211bd74ee3bf9a33a1bb43",
+      "after": "12aab87fb221b854116c5315d75145e7fb8eb91cb407abc7d285e7e9425570a9"
+    },
+    "server.py": {
+      "before": "eb98b5f0dc960a464d93bf4e757b9a237a1c88040fa3048e7a41bef806097079",
+      "after": "d2e44b0e9f066c88023f96042723f1979163a5cc30a15870318c63423ee0d431"
+    },
+    "decision_analysis/counterfactual_summary.py": {
+      "before": null,
+      "after": "114159a0267fc4a1523a39004ac52adeb199b049d9f156c63c862f024d3ce3e3"
+    }
+  }
+}

@@ -17,7 +17,7 @@ The Schema is Draft 2020-12. It references only the locally loaded `urn:nextplay
 
 ## 2. How to read current-generator data
 
-The authoritative match directory is always `data/league/`, consistent with Home, Replay and the post-match report. `data/league-validated`, the old B league/enriched-v1 and the public-demo curated package are not used as substitutes for the new analysis page's data.
+The authoritative match directory is always `data/league/`, consistent with Home, Replay and the post-match report. `data/league-validated`, the old B league/enriched-v1 and the retired public-demo curated package are not used as substitutes for the new analysis page's data.
 
 ```text
 data/league/league.json                   teams, fixtures, ability parameters
@@ -210,13 +210,16 @@ Local numerical research CLI: `python3 -m decision_analysis.diagnostics --match 
 
 ## Unified product UI (2026-10-27)
 
-The product entry is `index.html?view=stats&analysis=decisions&match=<match_id>`.
-`Match Report` and `Decision Analysis` are separate sub-tabs. The old Coach and
+The product entry is `index.html?view=decisions&match=<match_id>`.
+Workspace Decision Analysis is independent. Analysis contains the match report only.
+Legacy `view=stats&analysis=decisions` links resolve to the independent route, preserving
+match, decision and action IDs. The old Coach and
 Action Review files/APIs remain compatible but are no longer main navigation entries.
 Replay contains only a brief Q2 hint and a link to the exact registered decision.
 
 The numerical engine, canonical schemas, four Agent roles, Responses transport,
-server-side credentials, budget/reviewer checks and Azure startup configuration are unchanged.
+server-side credentials, call/time budgets and Azure startup configuration are unchanged.
+The simulation adapter and Reviewer evidence checks are strengthened below.
 
 ### Agent binding and lifecycle
 
@@ -245,3 +248,39 @@ current receiver and a diamond marks the predicted receiving point on the shared
 The read-only full-league audit is `npm run audit:decisions`; outputs are in
 `docs/reports/decision-consistency.json`. Its reports distinguish unavailable full
 tracking, two terminal unsupported snapshots and valid pre-action comparisons.
+
+
+### Phase 1: internal Agent counterfactual tool (counterfactual-tool-1)
+
+`simulate_action({action_id})` calls the same `decision_analysis.counterfactual.simulate`
+as the Lab. It validates canonical request/snapshot exchange, candidate set, eligibility,
+supported type and the action template (recipient/target/mode/duration) before cache
+lookup or simulation. Cache keys bind snapshot, candidate set, action and full-observation
+context. A matching envelope cannot reuse another decision's target. No Q2 values are
+recomputed or changed by this validation.
+
+The internal tool result carries `snapshot_id`, `data_version`, `candidate_set_id`,
+`action_id`, `action_type`, `evidence_id`, `source_type=counterfactual_hypothesis`,
+`input_source_type=synthetic_match`, `observation_mode=full_observation`,
+`visibility_scope_id=full_snapshot`, `main_risk`, `assumptions`, `limitations`,
+`public_evidence_ids`, and `cases[]`. Each case includes `scenario_id`, `outcome`,
+`main_risk`, `assumptions`, `limitations`, `evidence_id`, `source_type`, duration and
+controller. No trajectory frames enter the Agent prompt. No count of hypothetical
+outcomes may be converted into an empirical probability.
+
+Only successful actual tool calls register receipts (agent, action, snapshot, data,
+candidate set, evidence and scenario IDs). `check_evidence` supplies these receipts.
+Defense cannot claim a selected action without its own corresponding successful call;
+a Reviewer acceptance after a complete Defense review must cite its actual tool evidence.
+This is a provenance check, not automatic verification of every sentence's semantics.
+
+This internal evidence registry extends the Agent's reasoning context; it does **not**
+change the public analyze/agents JSON schema. The public `/agents` response still
+projects citations to the registered public candidate evidence and exposes the existing
+Agent Trace. Full simulation frames are fetched separately through `/counterfactual`.
+Canonical `rollout_supported` and `/rollout` remain the legacy ground-pass bridge;
+the internal `counterfactual_supported` flag additionally supports carry and shot.
+
+Video IDs, revisions, partial observation modes, custom visibility and defensive
+assumptions are rejected in this phase. The future adapter must validate and retain
+those identities; this change does not implement Partial Q2 or invent unknown counts.

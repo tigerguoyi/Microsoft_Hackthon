@@ -19,9 +19,9 @@ model-backed agent team.
 That link opens a match with the replay desk on screen. The model key is held
 by the instance, so the four-role team answers without the visitor supplying
 anything. The three fixed cases are at
-<https://nextplay-ai.azurewebsites.net/cases.html>, and the browser-only demo
-that needs no key at all is at
-<https://nextplay-ai.azurewebsites.net/public-demo/index.html>.
+<https://nextplay-ai.azurewebsites.net/cases.html>. The deterministic Q2 comparison needs
+no model key. AI narration uses the configured service.
+The local product entry is `index.html?view=decisions`; deployment is not performed by this change.
 
 ## The five challenge stages, and where each lives
 
@@ -30,8 +30,8 @@ that needs no key at all is at
 | Ingest synthetic events | A generator produces matches, events, tracking and per-match decisions from a fixed seed | `touchline/generate.py`, `touchline/scripts/synth/` |
 | Interpret as statistics and context | A frozen snapshot becomes a ranked candidate set with an evidence registry | `touchline/decision_analysis/input_adapter.py`, `comparison.py` |
 | Explain why it matters | Each candidate carries a written opportunity and main risk, derived from the computed values rather than written by a language model | `touchline/decision_analysis/comparison.py` |
-| Render to the screen | A three-column replay desk (data board, 2D match, decision read), an action review and a browser-only public demo | `touchline/index.html`, `touchline/replay-desk.js`, `touchline/public-demo/` |
-| Personalisation | A fan mode and a coach mode produce genuinely different answers to the same moment, and the interface switches between English and Chinese | `touchline/decision/agents.py`, `touchline/coach-i18n.js` |
+| Render to the screen | Replay plus an independent Workspace Decision Analysis with the exact snapshot, candidate ranking, Counterfactual and four-role AI coach | `touchline/index.html`, `touchline/decision-analysis-view.js`, `touchline/replay-desk.js` |
+| Personalisation | Fan / Analyst modes request different levels of explanation to the same moment, and the interface switches between English and Chinese | `touchline/decision/agents.py`, `touchline/coach-i18n.js` |
 
 ## Microsoft and Azure technology actually used
 
@@ -52,9 +52,7 @@ that needs no key at all is at
 - **GitHub Copilot** was used as the development assistant across the team.
 
 Azure deployment beyond the Foundry resource (Container Apps, AKS) is **not**
-part of this submission. The public demo is a static page that runs entirely in
-the browser, which is what lets the entry stay free and open for the whole
-judging period.
+part of this submission. The old Public Demo bundle is retired with HTTP 410; the shared synthetic data and independent deterministic Q2 analysis remain available.
 
 ## The four-role agent team
 

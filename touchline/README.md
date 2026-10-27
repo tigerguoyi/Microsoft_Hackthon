@@ -4,11 +4,12 @@ A dependency-free football data demo for match replay, event consumption, live s
 
 ## Checked-in sample and how to regenerate
 
-This checkout keeps a small sample instead of the full generated league (the upstream data directory was about 320 MiB).
-
-- `data/` is the legacy Harbor FC vs Mountain FC match **without** `tracking.jsonl`. That file is about 29 MB and is gitignored.
-- `data/league/` has the 4-matchweek index (fixtures, table, fictional squads) plus **two** match directories: the week-1 opener and the week-3 featured match, which is what the explorer opens when no home club is selected. Other match folders are omitted. Scores for every fixture still live in `league.json`.
-- Any `tracking.jsonl` under `data/` is gitignored, as are match directories other than the two sample fixtures and an alternate output at `data/league-alt/`.
+This checkout contains all **40 match directories** and **91,031 decision snapshots**.
+Full `tracking.jsonl` files are not checked in: animation uses the 60-second previews,
+while Decision Analysis reads the separate registered full-match decision snapshots.
+Do not regenerate matches to enable the new navigation or Agent tools. The following
+commands describe the existing generator for separate research outputs; they are not
+part of this Phase 1–3 change and can overwrite data if run against the checked-in path.
 
 From this directory:
 
@@ -26,7 +27,7 @@ python3 generate.py --weeks 4 --tracking featured
 python3 generate.py --seed 12345 --output data/league-alt
 ```
 
-`--retain-matches` still simulates every fixture so `league.json`, `fixtures.jsonl` and `standings.json` stay complete, then deletes match directories that are not kept. `validate_league.py` expects every match directory on disk and passes only after a generate run **without** `--retain-matches`. `npm test` is written to run against the trimmed sample.
+`--retain-matches` still simulates every fixture so `league.json`, `fixtures.jsonl` and `standings.json` stay complete, then deletes match directories that are not kept. `validate_league.py` expects every match directory on disk and passes only after a generate run **without** `--retain-matches`. `npm test` checks the current full decision dataset and the existing sample contracts.
 
 `python3 validate.py` on the legacy match needs `data/tracking.jsonl`. Generate single mode first. `package.py` also reads that tracking file and writes `football-simulation.zip` next to this directory.
 
@@ -81,6 +82,9 @@ of all generated matches. `CURRENT_MATCHWEEK` in `club-home.js` sets the clock.
 - **Overview** — score, possession, shots, passing, interceptions, pressure events, event feed and player focus.
 - **Replay** — smooth 5 Hz tracking for players and the ball, 1× / 4× / 10× speed, timeline scrubbing and ±10 second controls. Red cards remove players; substitutions switch to the incoming player's identity. Space toggles playback; arrow keys jump 10 seconds.
 - **Analysis** — an English post-match report, first- and second-half review, match progression, Player of the Match with evidence and leading performers, plus final match statistics.
+- **Decision Analysis** (Workspace, `?view=decisions`) — decision timeline, filters, player action conditions, ranked Pass / Carry / Shot choices, Opportunity / Main Risk, Counterfactual, Ask AI Coach, Evidence and Agent Trace. Analysis contains reports only. Old `?view=stats&analysis=decisions` links still work.
+- **Video Analysis** — disabled Phase 4 label; video integration and partial observation are not implemented in this change.
+- **Real-data validation** — existing independent validation tools remain available.
 - **Lineups** — matchday XI plus substitutes, appearance status, cards and simulated distance.
 - **Squads** — a new league-wide tab with all 20 clubs' 2026/27 rosters. Pick a club, search by player, position or nationality, and browse players grouped by goalkeepers, defenders, midfielders and forwards.
 
@@ -139,12 +143,24 @@ Four roles reason over one frozen snapshot, in a fixed order:
 | `coordinator` | Understand the question, delegate in order, synthesise | `delegate` |
 | `attack` | Compare the options and their trade-offs | `compare_actions` |
 | `defense` | Attack the conclusion: interception, sensitivity | `simulate_action` |
-| `audit` | Check citations, assumptions, overreach; accept or reject | `check_evidence` |
+| `reviewer` | Check citations, assumptions, overreach; accept or reject | `check_evidence` |
 
 The candidate set is the full comparison, not only passes: passes, three carries,
 a shot when in range, and holding. The roles share one evidence registry, so a
-number in the answer traces back to a computed value. `simulate_action` answers
-`rollout_supported: false` for a carry, shot or hold instead of failing.
+number in the answer traces back to a computed value. Agent `simulate_action` now
+uses `decision_analysis.counterfactual.simulate` for supported Pass / Carry / Shot,
+returning compact summaries and actual tool receipts; complete frames remain in the Lab.
+Hold and unsupported or stale candidates are rejected. Reviewer verifies completed
+Defense simulations against the receipts. Four deterministic scenarios are hypotheses,
+not success-probability samples. The old public `/api/rollout` and canonical
+`rollout_supported` flag keep their ground-pass-only compatibility semantics.
+
+Public Demo and its dedicated static scorer/build script are removed. `/public-demo`
+and descendants return HTTP 410 through both the local handler and WSGI. Shared
+models and data are retained. Video and partial-observation contexts fail explicitly
+until their later adapters exist; missing defenders are not interpreted as zero.
+
+See [Phase 1–3 handoff](../HANDOFF_Phase1-3_20261027.md).
 
 If the audit rejects the answer, the coordinator rewrites it once. If the rewrite
 does not hold up, only the computed comparison is returned. Every specialist

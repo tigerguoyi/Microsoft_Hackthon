@@ -1,6 +1,6 @@
 import {playerLabel,describeAction,validateDecisionDocument} from './player-identity.js';
 import {createDecisionAgent} from './decision-agent.js';
-import {renderPitch} from './pitch-renderer.js?v=unified-1';
+import {renderPitch} from './pitch-renderer.js?v=phase123-1';
 export const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
 const fmt=(v,n=2)=>v==null?'—':Number(v).toFixed(n);
 export const actionLabel=describeAction;
@@ -24,7 +24,7 @@ export async function api(path,data,signal){
  const value=await r.json();if(!r.ok)throw Error(value.error||`Analysis unavailable (${r.status})`);return value;
 }
 export function createDecisionView(container,jump){
- container.innerHTML=`<div class="decision-header"><div><span class="tiny-label">CURRENT GENERATOR · TWO-STEP ANALYSIS</span><h2>Compare the choices, keep the facts.</h2><p>Current-match snapshots, opportunities and risks. Hypotheses stay separate from actual results.</p></div><span class="subtle-badge">SOURCE: DATA/LEAGUE</span></div>
+ container.innerHTML=`<nav class="decision-return-links" aria-label="Other match views"><button class="button" data-view="replay">Replay</button><button class="button" data-view="stats">Match Report</button><button class="button" data-view="home">Home</button></nav><div class="decision-header"><div><span class="tiny-label">CURRENT GENERATOR · TWO-STEP ANALYSIS</span><h2>Compare the choices, keep the facts.</h2><p>Current-match snapshots, opportunities and risks. Hypotheses stay separate from actual results.</p></div><span class="subtle-badge">SOURCE: DATA/LEAGUE</span></div>
  <div class="decision-toolbar"><label>Team<select id="da-team"><option value="">Both teams</option></select></label><label>Decision player<select id="da-player"><option value="">All players</option></select></label><label>Actual action type<select id="da-kind"><option value="">All actions</option><option value="pass">Pass</option><option value="carry">Carry</option><option value="shot">Shot</option></select></label><label>Scope<select id="da-scope"><option value="representative">Representative decisions</option><option value="all">All decisions</option><option value="largest">Largest value losses</option><option value="coverage">Unavailable / coverage</option></select></label></div>
  <p id="da-status" role="status"></p><div id="da-summary" class="decision-summary"></div><p class="decision-note">Representatives rotate players, teams, zones and possession episodes. Missing eligible records are never invented. Largest losses is a separate review list, not a representative sample.</p>
  <div class="decision-workspace"><aside class="card decision-list-card"><div class="card-heading"><h3>Decision timeline</h3><span id="da-count"></span></div><div id="da-list"></div><p class="decision-note" id="da-window"></p><button class="button" id="da-earlier" hidden>Earlier decisions</button><button class="button" id="da-more" hidden>Show more decisions</button></aside><div id="da-detail"><p class="empty">Select a decision.</p></div></div>`;

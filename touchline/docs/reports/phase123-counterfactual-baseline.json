@@ -1,0 +1,134 @@
+[
+  {
+    "match_id": "PL26-W01-MCI-CHE",
+    "decision_id": "d000001",
+    "request": {
+      "match_id": "PL26-W01-MCI-CHE",
+      "snapshot_id": "67554a61efcbaa4f",
+      "t_ms": 16200,
+      "actor_id": "H10",
+      "question": "Compare current choices",
+      "mode": "analyst",
+      "language": "en",
+      "profile": {
+        "profile_version": "sim-1",
+        "kind": "simulated",
+        "preferred_foot": null,
+        "weak_foot": null
+      }
+    },
+    "action_id": "pass:H06",
+    "candidate_set_id": "outcome-3.0:515afd7cff3a28cd",
+    "sha256": "b6ca4d5172ac82eaed462a48756926beff4b205f31503b42b7cab529e53c6ee8"
+  },
+  {
+    "match_id": "PL26-W01-MCI-CHE",
+    "decision_id": "d000001",
+    "request": {
+      "match_id": "PL26-W01-MCI-CHE",
+      "snapshot_id": "67554a61efcbaa4f",
+      "t_ms": 16200,
+      "actor_id": "H10",
+      "question": "Compare current choices",
+      "mode": "analyst",
+      "language": "en",
+      "profile": {
+        "profile_version": "sim-1",
+        "kind": "simulated",
+        "preferred_foot": null,
+        "weak_foot": null
+      }
+    },
+    "action_id": "carry:right",
+    "candidate_set_id": "outcome-3.0:515afd7cff3a28cd",
+    "sha256": "ef738f5f05b4249744301b12ea68d21c3566b643edc15a8137e8d50a61b95290"
+  },
+  {
+    "match_id": "PL26-W01-MCI-CHE",
+    "decision_id": "d000001",
+    "request": {
+      "match_id": "PL26-W01-MCI-CHE",
+      "snapshot_id": "67554a61efcbaa4f",
+      "t_ms": 16200,
+      "actor_id": "H10",
+      "question": "Compare current choices",
+      "mode": "analyst",
+      "language": "en",
+      "profile": {
+        "profile_version": "sim-1",
+        "kind": "simulated",
+        "preferred_foot": null,
+        "weak_foot": null
+      }
+    },
+    "action_id": "shot:goal",
+    "candidate_set_id": "outcome-3.0:515afd7cff3a28cd",
+    "sha256": "accc7e10844cdb56c85f3de1ac178d109fe2b6790e415e9f7802aa5193847a5f"
+  },
+  {
+    "match_id": "PL26-W03-EVE-CRY",
+    "decision_id": "d001169",
+    "request": {
+      "match_id": "PL26-W03-EVE-CRY",
+      "snapshot_id": "afe417c8978c8749",
+      "t_ms": 3036400,
+      "actor_id": "A10",
+      "question": "Compare current choices",
+      "mode": "analyst",
+      "language": "en",
+      "profile": {
+        "profile_version": "sim-1",
+        "kind": "simulated",
+        "preferred_foot": null,
+        "weak_foot": null
+      }
+    },
+    "action_id": "pass:A06",
+    "candidate_set_id": "outcome-3.0:48af1e83f6951f59",
+    "sha256": "3b77c374162a3ffe090d493b6045a7ad0955fb1dd6d1dfcd455cdc48c0fb0d99"
+  },
+  {
+    "match_id": "PL26-W03-EVE-CRY",
+    "decision_id": "d001169",
+    "request": {
+      "match_id": "PL26-W03-EVE-CRY",
+      "snapshot_id": "afe417c8978c8749",
+      "t_ms": 3036400,
+      "actor_id": "A10",
+      "question": "Compare current choices",
+      "mode": "analyst",
+      "language": "en",
+      "profile": {
+        "profile_version": "sim-1",
+        "kind": "simulated",
+        "preferred_foot": null,
+        "weak_foot": null
+      }
+    },
+    "action_id": "carry:right",
+    "candidate_set_id": "outcome-3.0:48af1e83f6951f59",
+    "sha256": "70861cd0d6c044c4e234eb57d127c6ca2edda319f6f7e347b19ed459bd9ffbde"
+  },
+  {
+    "match_id": "PL26-W03-EVE-CRY",
+    "decision_id": "d001169",
+    "request": {
+      "match_id": "PL26-W03-EVE-CRY",
+      "snapshot_id": "afe417c8978c8749",
+      "t_ms": 3036400,
+      "actor_id": "A10",
+      "question": "Compare current choices",
+      "mode": "analyst",
+      "language": "en",
+      "profile": {
+        "profile_version": "sim-1",
+        "kind": "simulated",
+        "preferred_foot": null,
+        "weak_foot": null
+      }
+    },
+    "action_id": "shot:goal",
+    "candidate_set_id": "outcome-3.0:48af1e83f6951f59",
+    "sha256": "ec236d1a5f9d0633cc71847c8c08d24d983ae683c55d07cb720f2fa58e36b03f"
+  }
+]

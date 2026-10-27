@@ -1,0 +1,13 @@
+[
+  "touchline/build_public_demo.py",
+  "touchline/public-demo/app.js",
+  "touchline/public-demo/coach.css",
+  "touchline/public-demo/data.json",
+  "touchline/public-demo/index.html",
+  "touchline/public-demo/inference.js",
+  "touchline/public-demo/rates.json",
+  "touchline/public-demo/statsbomb-logo.png",
+  "touchline/public-demo/validation.html",
+  "touchline/public-demo/value-model.json",
+  "touchline/tests/test_web_port.py"
+]

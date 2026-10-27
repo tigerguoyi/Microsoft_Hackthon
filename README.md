@@ -6,17 +6,21 @@ The screen does not grade the player.
 
 ## Current local product (2026-10-27)
 
-Analysis now has **Match Report** and **Decision Analysis**. Use
-`touchline/index.html?match=PL26-W03-EVE-CRY&view=stats&analysis=decisions`
-for the two-step Q2 comparison, player action conditions, bound counterfactuals
-and the existing four-role AI coach. Replay keeps a brief hint and an exact-decision link.
-Legacy Coach/Action Review APIs remain available for compatibility.
+Workspace **Decision Analysis** is independent from the post-match **Analysis** report.
+Open `touchline/index.html?match=PL26-W03-EVE-CRY&view=decisions` for Q2,
+player action conditions, Counterfactual and the four-role AI coach. Old
+`view=stats&analysis=decisions` links are normalized to this route. Agent
+`simulate_action` now uses the same Pass / Carry / Shot engine as Counterfactual Lab,
+with actual tool receipts checked by Reviewer. Public Demo is retired (HTTP 410).
+Video Analysis is a disabled Phase 4 navigation label, not an implemented feature.
 
-See [the Chinese handoff and validation report](HANDOFF_决策分析统一与数据一致性_20261027.md)
-for the full audit, unchanged-model guarantees, test results and remaining work.
-This local commit has **not** been pushed or deployed; the hosted instance may
-still run the preceding UI. Full tracking files are absent from the current
-checkout; preview animation and full-match decision snapshots remain available.
+See [the current Chinese Phase 1–3 handoff](HANDOFF_Phase1-3_20261027.md)
+and [the file-level compatibility audit](docs/PHASE1_3_COMPATIBILITY_20261027.md).
+The earlier [unification report](HANDOFF_决策分析统一与数据一致性_20261027.md)
+is historical. This change is local only, with no push or deployment. Full tracking
+files are absent in this checkout; preview animation and full-match decision snapshots
+remain available. Original matches, Q2 mathematics, learned artifacts and Azure startup
+configuration are preserved. Legacy Coach/Action Review APIs remain compatible.
 The product Q2 engine in `touchline/decision_analysis` is separate from the
 root `inside_the_game` classification kernel documented later in this README.
 

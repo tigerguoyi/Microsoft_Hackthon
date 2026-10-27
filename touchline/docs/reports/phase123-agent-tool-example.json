@@ -1,0 +1,195 @@
+{
+  "note": "Actual deterministic engine output; no language provider invoked. This is internal tool evidence, not the public /agents HTTP schema.",
+  "request": {
+    "match_id": "PL26-W01-MCI-CHE",
+    "snapshot_id": "67554a61efcbaa4f",
+    "t_ms": 16200,
+    "actor_id": "H10",
+    "question": "Compare current choices",
+    "mode": "analyst",
+    "language": "en",
+    "profile": {
+      "profile_version": "sim-1",
+      "kind": "simulated",
+      "preferred_foot": null,
+      "weak_foot": null
+    }
+  },
+  "tool_arguments": {
+    "action_id": "carry:right"
+  },
+  "result": {
+    "snapshot_id": "67554a61efcbaa4f",
+    "data_version": "gen-19c6f7e3d03d3651",
+    "candidate_set_id": "outcome-3.0:515afd7cff3a28cd",
+    "action_id": "carry:right",
+    "action_type": "carry",
+    "schema_version": "counterfactual-tool-1",
+    "evidence_id": "counterfactual:06610b2799b46b65",
+    "source_type": "counterfactual_hypothesis",
+    "input_source_type": "synthetic_match",
+    "observation_mode": "full_observation",
+    "visibility_scope_id": "full_snapshot",
+    "rollout_supported": true,
+    "counterfactual_supported": true,
+    "cases": [
+      {
+        "snapshot_id": "67554a61efcbaa4f",
+        "data_version": "gen-19c6f7e3d03d3651",
+        "candidate_set_id": "outcome-3.0:515afd7cff3a28cd",
+        "action_id": "carry:right",
+        "action_type": "carry",
+        "scenario_id": "quick",
+        "outcome": "retained",
+        "main_risk": "Retention and the opponent response are tactical assumptions; intended historical direction is not reconstructed. Source/target pressure 0.68/0.10.",
+        "assumptions": [
+          "Four deterministic hypotheses, not outcome-probability samples.",
+          "Movement uses 7.2 m/s and 3.5 m/s² caps; no collisions, fatigue or individual skill model.",
+          "Carry retains ball until a defender reaches 1 m; shot uses a 24 m/s straight ground trajectory.",
+          "Shot contact within 1 m blocks; goalkeeper contact within 1.5 m saves. No rebounds or aerial physics.",
+          "These playback rules differ from Q2 branch probabilities and do not validate or change the ranking.",
+          "Playback is truncated at the current metadata period boundary."
+        ],
+        "limitations": [
+          "Deterministic movement hypotheses, not observed future match events.",
+          "Scenario frequencies are not success probabilities, confidence intervals or a Q2 validation.",
+          "Simplified short movement; no aerial physics, rebounds, contact skill or fatigue.",
+          "Complete synthetic observations only; video revisions and partial assumptions are not implemented in Phase 1–3."
+        ],
+        "evidence_id": "counterfactual:06610b2799b46b65:quick",
+        "source_type": "counterfactual_hypothesis",
+        "reaction_s": 0.1,
+        "duration_s": 2.0,
+        "controller_id": "H10"
+      },
+      {
+        "snapshot_id": "67554a61efcbaa4f",
+        "data_version": "gen-19c6f7e3d03d3651",
+        "candidate_set_id": "outcome-3.0:515afd7cff3a28cd",
+        "action_id": "carry:right",
+        "action_type": "carry",
+        "scenario_id": "baseline",
+        "outcome": "retained",
+        "main_risk": "Retention and the opponent response are tactical assumptions; intended historical direction is not reconstructed. Source/target pressure 0.68/0.10.",
+        "assumptions": [
+          "Four deterministic hypotheses, not outcome-probability samples.",
+          "Movement uses 7.2 m/s and 3.5 m/s² caps; no collisions, fatigue or individual skill model.",
+          "Carry retains ball until a defender reaches 1 m; shot uses a 24 m/s straight ground trajectory.",
+          "Shot contact within 1 m blocks; goalkeeper contact within 1.5 m saves. No rebounds or aerial physics.",
+          "These playback rules differ from Q2 branch probabilities and do not validate or change the ranking.",
+          "Playback is truncated at the current metadata period boundary."
+        ],
+        "limitations": [
+          "Deterministic movement hypotheses, not observed future match events.",
+          "Scenario frequencies are not success probabilities, confidence intervals or a Q2 validation.",
+          "Simplified short movement; no aerial physics, rebounds, contact skill or fatigue.",
+          "Complete synthetic observations only; video revisions and partial assumptions are not implemented in Phase 1–3."
+        ],
+        "evidence_id": "counterfactual:06610b2799b46b65:baseline",
+        "source_type": "counterfactual_hypothesis",
+        "reaction_s": 0.3,
+        "duration_s": 2.0,
+        "controller_id": "H10"
+      },
+      {
+        "snapshot_id": "67554a61efcbaa4f",
+        "data_version": "gen-19c6f7e3d03d3651",
+        "candidate_set_id": "outcome-3.0:515afd7cff3a28cd",
+        "action_id": "carry:right",
+        "action_type": "carry",
+        "scenario_id": "delayed",
+        "outcome": "retained",
+        "main_risk": "Retention and the opponent response are tactical assumptions; intended historical direction is not reconstructed. Source/target pressure 0.68/0.10.",
+        "assumptions": [
+          "Four deterministic hypotheses, not outcome-probability samples.",
+          "Movement uses 7.2 m/s and 3.5 m/s² caps; no collisions, fatigue or individual skill model.",
+          "Carry retains ball until a defender reaches 1 m; shot uses a 24 m/s straight ground trajectory.",
+          "Shot contact within 1 m blocks; goalkeeper contact within 1.5 m saves. No rebounds or aerial physics.",
+          "These playback rules differ from Q2 branch probabilities and do not validate or change the ranking.",
+          "Playback is truncated at the current metadata period boundary."
+        ],
+        "limitations": [
+          "Deterministic movement hypotheses, not observed future match events.",
+          "Scenario frequencies are not success probabilities, confidence intervals or a Q2 validation.",
+          "Simplified short movement; no aerial physics, rebounds, contact skill or fatigue.",
+          "Complete synthetic observations only; video revisions and partial assumptions are not implemented in Phase 1–3."
+        ],
+        "evidence_id": "counterfactual:06610b2799b46b65:delayed",
+        "source_type": "counterfactual_hypothesis",
+        "reaction_s": 0.65,
+        "duration_s": 2.0,
+        "controller_id": "H10"
+      },
+      {
+        "snapshot_id": "67554a61efcbaa4f",
+        "data_version": "gen-19c6f7e3d03d3651",
+        "candidate_set_id": "outcome-3.0:515afd7cff3a28cd",
+        "action_id": "carry:right",
+        "action_type": "carry",
+        "scenario_id": "wide_error",
+        "outcome": "retained",
+        "main_risk": "Retention and the opponent response are tactical assumptions; intended historical direction is not reconstructed. Source/target pressure 0.68/0.10.",
+        "assumptions": [
+          "Four deterministic hypotheses, not outcome-probability samples.",
+          "Movement uses 7.2 m/s and 3.5 m/s² caps; no collisions, fatigue or individual skill model.",
+          "Carry retains ball until a defender reaches 1 m; shot uses a 24 m/s straight ground trajectory.",
+          "Shot contact within 1 m blocks; goalkeeper contact within 1.5 m saves. No rebounds or aerial physics.",
+          "These playback rules differ from Q2 branch probabilities and do not validate or change the ranking.",
+          "Playback is truncated at the current metadata period boundary."
+        ],
+        "limitations": [
+          "Deterministic movement hypotheses, not observed future match events.",
+          "Scenario frequencies are not success probabilities, confidence intervals or a Q2 validation.",
+          "Simplified short movement; no aerial physics, rebounds, contact skill or fatigue.",
+          "Complete synthetic observations only; video revisions and partial assumptions are not implemented in Phase 1–3."
+        ],
+        "evidence_id": "counterfactual:06610b2799b46b65:wide_error",
+        "source_type": "counterfactual_hypothesis",
+        "reaction_s": 0.3,
+        "duration_s": 2.0,
+        "controller_id": "H10"
+      }
+    ],
+    "main_risk": "Retention and the opponent response are tactical assumptions; intended historical direction is not reconstructed. Source/target pressure 0.68/0.10.",
+    "assumptions": [
+      "Four deterministic hypotheses, not outcome-probability samples.",
+      "Movement uses 7.2 m/s and 3.5 m/s² caps; no collisions, fatigue or individual skill model.",
+      "Carry retains ball until a defender reaches 1 m; shot uses a 24 m/s straight ground trajectory.",
+      "Shot contact within 1 m blocks; goalkeeper contact within 1.5 m saves. No rebounds or aerial physics.",
+      "These playback rules differ from Q2 branch probabilities and do not validate or change the ranking.",
+      "Playback is truncated at the current metadata period boundary."
+    ],
+    "limitations": [
+      "Deterministic movement hypotheses, not observed future match events.",
+      "Scenario frequencies are not success probabilities, confidence intervals or a Q2 validation.",
+      "Simplified short movement; no aerial physics, rebounds, contact skill or fatigue.",
+      "Complete synthetic observations only; video revisions and partial assumptions are not implemented in Phase 1–3."
+    ],
+    "public_evidence_ids": [
+      "route-4",
+      "model-context"
+    ],
+    "summary": "Deterministic short movement hypotheses; scenario counts are not probabilities.",
+    "ranking_unchanged": true,
+    "not_observed_future": true
+  },
+  "tool_receipts": [
+    {
+      "snapshot_id": "67554a61efcbaa4f",
+      "data_version": "gen-19c6f7e3d03d3651",
+      "candidate_set_id": "outcome-3.0:515afd7cff3a28cd",
+      "action_id": "carry:right",
+      "action_type": "carry",
+      "evidence_id": "counterfactual:06610b2799b46b65",
+      "source_type": "counterfactual_hypothesis",
+      "agent": "defense",
+      "tool": "simulate_action",
+      "scenario_ids": [
+        "quick",
+        "baseline",
+        "delayed",
+        "wide_error"
+      ]
+    }
+  ]
+}

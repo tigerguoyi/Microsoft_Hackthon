@@ -1,7 +1,8 @@
-import {renderPitch,pitchGeometry,hitTestPlayer,hitTestPitch} from './pitch-renderer.js?v=unified-1';
-import {createDecisionView} from './decision-analysis-view.js?v=unified-1';
-import {createReplayDesk} from './replay-desk.js?v=unified-1';
-import {playerLabel as identityLabel} from './player-identity.js';
+import {resolveView,viewURL} from './navigation.js';
+import {renderPitch,pitchGeometry,hitTestPlayer,hitTestPitch} from './pitch-renderer.js?v=phase123-1';
+import {createDecisionView} from './decision-analysis-view.js?v=phase123-1';
+import {createReplayDesk} from './replay-desk.js?v=phase123-1';
+import {playerLabel as identityLabel,decisionURL} from './player-identity.js';
 import {validateMatchBundle,scoreAt,sameScore,scoreContext} from './score-context.js';
 import { playerStats, heatmapSVG } from './player-analysis.js';
 import { januarySchedule, calendarDays } from './calendar.js';
@@ -16,7 +17,6 @@ const state = { metadata: null, summary: null, preview: null, packed: null, even
 const canvas = $('#pitch');
 const ctx = canvas.getContext('2d');
 const LEAGUE_ROOT = './data/league/';
-let analysisTab=new URLSearchParams(location.search).get('analysis')||'report';
 // The standalone decision tab is optional: the replay desk now reads the same
 // contract inline. When its container is absent the view is inert rather than
 // a null dereference that stops the whole page from starting.
@@ -26,20 +26,9 @@ const decisionView=decisionHost
   :{show(){},clear(){},refreshReplayAvailability(){},setMatch(){}};
 const replayDesk=createReplayDesk(()=>state,openDecisionAnalysis);
 function openDecisionAnalysis(decisionId){
-  setAnalysisTab('decisions');changeView('stats');
+  changeView('decisions');
   if(decisionId)decisionView.openDecision(decisionId);
 }
-$('#nav-decision-analysis').onclick=event=>{event.preventDefault();openDecisionAnalysis();};
-function setAnalysisTab(tab){
-  analysisTab=tab==='decisions'?'decisions':'report';
-  if($('#match-report-panel'))$('#match-report-panel').hidden=analysisTab==='decisions';
-  if(decisionHost)decisionHost.hidden=analysisTab!=='decisions';
-  document.querySelectorAll('[data-analysis-tab]').forEach(b=>{b.classList.toggle('active',b.dataset.analysisTab===analysisTab);b.setAttribute('aria-selected',String(b.dataset.analysisTab===analysisTab));});
-  decisionView.show(state.view==='stats'&&analysisTab==='decisions');
-  if(state.view==='stats'){const url=new URL(location.href);url.searchParams.set('analysis',analysisTab);history.replaceState(null,'',url);}
-}
-document.querySelectorAll('[data-analysis-tab]').forEach(b=>b.onclick=()=>setAnalysisTab(b.dataset.analysisTab));
-
 let worker = null, allFixtures = [], lastTick = 0, lastUI = 0, eventKey = '', statsKey = '', canvasWidth = 0, canvasHeight = 0;
 const teamMeta = id => state.metadata?.teams.find(t => t.team_id === id);
 const teamName = id => teamMeta(id)?.short_name || teamMeta(id)?.name || 'Match';
@@ -171,7 +160,7 @@ function updateMatchChrome(fixture, metadata) {
   $('#match-competition').textContent = metadata.competition?.name || 'NextPlay League (sim)';
   $('#match-week').textContent = `Matchweek ${week}`;
   $('#match-kickoff').textContent = kickoff;
-  if (['overview', 'replay', 'stats', 'lineup'].includes(state.view)) $('#eyebrow-code').textContent = `/ W${String(week).padStart(2, '0')}`;
+  if (['overview', 'replay', 'stats', 'lineup', 'decisions'].includes(state.view)) $('#eyebrow-code').textContent = `/ W${String(week).padStart(2, '0')}`;
   $('#legend-home').textContent = home.short_name || home.name;
   $('#legend-away').textContent = away.short_name || away.name;
   $('#full-legend-home').textContent = home.short_name || home.name;
@@ -179,6 +168,7 @@ function updateMatchChrome(fixture, metadata) {
   $('#stats-home-label').textContent = home.short_name || home.name;
   $('#stats-away-label').textContent = away.short_name || away.name;
   $('#match-picker-meta').innerHTML = `${escape(kickoff)}<span class="meta-divider">/</span>${escape(metadata.venue || '')}<span class="meta-divider">/</span><span class="subtle-badge">${tracking}</span>`;
+  document.querySelectorAll('a[data-view=decisions]').forEach(link=>{link.href=decisionURL(metadata.match_id);});
   $('#export-summary').href = `${LEAGUE_ROOT}${fixture.paths.summary}`;
   $('#export-summary').download = `${metadata.match_id}-summary.json`;
   $('#dataset-summary').textContent = `${state.league.teams.length} clubs · ${state.league.format.total_matches} matches · 5 Hz`;
@@ -277,7 +267,7 @@ async function loadMatch(matchId, { updateUrl = true } = {}) {
     statsKey = '';
     setPickerBusy(false);
     refresh(true);
-    if (updateUrl && ['overview', 'replay', 'stats', 'lineup'].includes(state.view)) updateUrlForMatch(fixture.match_id);
+    if (updateUrl && ['overview', 'replay', 'stats', 'lineup', 'decisions'].includes(state.view)) updateUrlForMatch(fixture.match_id);
     startTracking(fixture, token);
     loadReport(fixture, token);
     loadHeatmaps(fixture, token);
@@ -443,7 +433,7 @@ async function init() {
     const linked = allFixtures.find(fixture => fixture.match_id === requested);
     const current = allFixtures.filter(fixture => fixture.matchweek === CURRENT_MATCHWEEK);
     const initial = linked || current.find(fixture => [fixture.home_club_id, fixture.away_club_id].includes(state.homeClub)) || current.find(fixture => fixture.featured) || current[0] || allFixtures[0];
-    changeView(['home','overview','replay','stats','lineup','squads','settings'].includes(initialQuery.get('view')) ? initialQuery.get('view') : linked ? 'overview' : 'home');
+    changeView(resolveView(initialQuery,linked?'overview':'home'));
     await loadMatch(initial.match_id, { updateUrl: Boolean(linked) });
   } catch (error) {
     $('#load-status').textContent = 'Data not ready';
@@ -477,11 +467,12 @@ function setPlaying(playing) {
 function changeView(view) {
   state.view = view;
   document.body.dataset.view = view;
-  const viewUrl=new URL(location.href);viewUrl.searchParams.set('view',view);history.replaceState(null,'',viewUrl);
+  const viewUrl=viewURL(location.href,view);history.replaceState(null,'',viewUrl);
   const titles = {
     home: ['Home', 'Your club. The week ahead.', 'Results, form and the next challenge — all in one place.'],
     overview: ['Overview', 'Every moment, on the pitch.', 'Explore every pass, run and goal.'],
     replay: ['Replay', 'Back to the moment.', 'Scrub the timeline and explore every movement.'],
+    decisions: ['Decision Analysis','Read the decision, explore the alternatives.','Full two-step Q2 · opportunities, risks, counterfactuals and evidence-based AI coaching.'],
     stats: ['Analysis', 'The story behind the score.', 'Post-match analysis, Player of the Match and the full match statistics.'],
     lineup: ['Lineups', 'Every position on the pitch.', 'Starting lineups, substitutes and simulated distance.'],
     settings: ['Settings', 'Your match summary model.', 'Configure the model service used for post-match writing.'],
@@ -502,16 +493,17 @@ function changeView(view) {
   $('#load-status').hidden = !matchView;
   $('#live-view').hidden = view !== 'overview' && view !== 'replay';
   $('#stats-view').hidden = view !== 'stats';
+  if(decisionHost)decisionHost.hidden=view!=='decisions';
+  decisionView.show(view==='decisions');
   $('#lineup-view').hidden = view !== 'lineup';
   $('#squads-view').hidden = view !== 'squads';
   $('#settings-view').hidden = view !== 'settings';
   $('#home-view').hidden = view !== 'home';
-  $('.section-tabs').hidden = ['home', 'settings'].includes(view);
+  $('.section-tabs').hidden = ['home', 'settings', 'decisions'].includes(view);
   if (view === 'home') {
     renderHome();
     const url = new URL(location.href); url.searchParams.delete('match'); history.replaceState(null, '', url);
   } else if (matchView && state.fixture) updateUrlForMatch(state.fixture.match_id);
-  setAnalysisTab(analysisTab);
   if (view === 'settings') loadModelSettings();
   if (view !== 'overview' && view !== 'replay') setPlaying(false);
   if (view === 'home') $('#eyebrow-code').textContent = `/ WEEK ${CURRENT_MATCHWEEK} · ${state.league?.weeks.find(week => week.week === CURRENT_MATCHWEEK)?.date || ''}`;
@@ -857,7 +849,10 @@ $('#generate-model-summary').onclick = async () => {
   finally { $('#generate-model-summary').disabled = false; }
 };
 
-document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => changeView(button.dataset.view)));
+document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', event => {
+  if(button.tagName==='A'&&(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey))return;
+  event.preventDefault();changeView(button.dataset.view);
+}));
 document.querySelectorAll('[role=tab]').forEach(tab => tab.addEventListener('keydown', e => {
   const tabs = [...tab.closest('[role=tablist]').querySelectorAll('[role=tab]')];
   if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
@@ -921,6 +916,6 @@ document.addEventListener('keydown', e => {
   if (e.code === 'ArrowRight') { e.preventDefault(); seek(state.time + 10000); }
 });
 document.addEventListener('visibilitychange', () => { if (document.hidden) setPlaying(false); });
-if(!initialQuery.has('match'))changeView('home');
+if(!initialQuery.has('match'))changeView(resolveView(initialQuery,'home'));
 init();
 requestAnimationFrame(tick);
